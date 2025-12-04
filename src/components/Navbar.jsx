@@ -1,16 +1,22 @@
-import React from 'react'
-import logo from "../../src/assets/react.svg"
+import menu from "../../public/icones/mymenu.svg"
+import logo from "../../public/logo1.svg"
 export default function Navbar() {
     return (
         <div>
-            <nav className='flex w-full bg-blue-950 h-20 items-center justify-evenly px-10'>
-                <img src={logo} alt="logo" />
-                <ul className='flex gap-6'>
-                    <li>Home</li>
-                    <li>About</li>
-                    <li>Contact</li>
-                    <li>Login</li>
+            <nav className='flex w-full bg-[#002E6D] text-white h-18 items-center justify-between px-3 lg:px-20'>
+                <img className="h-15" src={logo} alt="logo" />
+                <ul className='gap-6 hidden font-bold lg:flex sm:flex'>
+                    <li className="hover:text-[#D00D2D] transition ease-in pointer"><a href="#">Home</a></li>
+                    <li className="hover:text-[#D00D2D] transition ease-in pointer"><a href="#">A propos</a></li>
+                    <li className="hover:text-[#D00D2D] transition ease-in pointer"><a href="#">Formations
+                    </a></li>
+                    <li className="hover:text-[#D00D2D] transition ease-in pointer"><a href="#">Actualités</a></li>
+                    <li className="hover:text-[#D00D2D] transition ease-in pointer"><a href="#">Galerie
+                    </a></li>
+                    <li className="hover:text-[#D00D2D] transition ease-in pointer"><a href="#">Contact</a></li>
+
                 </ul>
+                <img src={menu} className="lg:hidden sm:hidden" alt="menu" srcset="" />
             </nav>
         </div>
     )
