@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Heros from './components/hero/Heros'
 import Programme from './components/progammes/Programme'
 import Accesiftpl from './components/accesiftpl/Accesiftpl'
+import Information from './components/infomation/Information'
 export default function App() {
   return (
     <div>
@@ -11,6 +12,7 @@ export default function App() {
       <Heros />
       <Programme />
       <Accesiftpl />
+      <Information />    
     </div>
   )
 }
