@@ -1,16 +1,16 @@
 export let donnees = [
     {
         id: 1,
-        logo: "../../../public/icones/school.svg",
-        texte: "Congo"
+        logo: "../../../public/Metp.png",
+        alt: "Congo"
     }, {
         id: 2,
-        logo: "../../../public/icones/apartment.svg",
-        texte: "Total energie"
+        logo: "../../../public/TotalEnergies.png",
+        alt: "Total energie"
     }, {
         id: 3,
-        logo: "../../../public/icones/lab_panel.svg",
-        texte: "Namibie"
+        logo: "../../../public/ANamibie.svg",
+        alt: "Namibie"
     }
 ]
 
