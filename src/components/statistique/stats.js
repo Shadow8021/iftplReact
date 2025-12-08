@@ -4,23 +4,23 @@ export let donnees = [
         nbr: "+7",
         texte: "Formations"
     }, {
-        id: 1,
+        id: 2,
         nbr: "2",
         texte: "langages"
     }, {
-        id: 1,
+        id: 3,
         nbr: "+200",
         texte: "étudiants"
     }, {
-        id: 1,
+        id: 4,
         nbr: "+500",
         texte: "lauréats"
     }, {
-        id: 1,
+        id: 5,
         nbr: "30",
         texte: "Personnel Administratif"
     }, {
-        id: 1,
+        id: 6,
         nbr: "+51",
         texte: "Personnel enseignants"
     }
