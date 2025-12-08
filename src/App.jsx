@@ -6,6 +6,7 @@ import Accesiftpl from './components/accesiftpl/Accesiftpl'
 import Information from './components/infomation/Information'
 import ProjectForm from './components/projectForm/ProjectForm'
 import Statistique from './components/statistique/Statistique'
+import Partenaires from './components/partenaire/Partenaires'
 export default function App() {
   return (
     <div>
@@ -16,6 +17,7 @@ export default function App() {
       <Information />
       <ProjectForm />
       <Statistique />
+      <Partenaires />
     </div>
   )
 }
