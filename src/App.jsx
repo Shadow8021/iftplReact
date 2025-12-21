@@ -7,6 +7,7 @@ import Information from './components/infomation/Information'
 import ProjectForm from './components/projectForm/ProjectForm'
 import Statistique from './components/statistique/Statistique'
 import Partenaires from './components/partenaire/Partenaires'
+import Temoignages from './components/Temoignages/Temoignages'
 export default function App() {
   return (
     <div>
@@ -18,6 +19,7 @@ export default function App() {
       <ProjectForm />
       <Statistique />
       <Partenaires />
+      <Temoignages />
     </div>
   )
 }
