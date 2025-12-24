@@ -12,13 +12,13 @@ export default function App() {
   return (
     <div>
       <Navbar />
-      <Heros />
+      {/*<Heros />
       <Programme />
       <Accesiftpl />
       <Information />
       <ProjectForm />
       <Statistique />
-      <Partenaires />
+      <Partenaires />*/}
       <Temoignages />
     </div>
   )
