@@ -5,6 +5,8 @@
 body {
   font-family: "Roboto", sans-serif;
   background-color: antiquewhite;
+  width: 100%;
+  max-width: 100%;
 }
 
 nav {

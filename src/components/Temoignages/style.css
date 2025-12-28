@@ -1,13 +1,9 @@
 .slick-arrow::before {
-    display: none;
     color: red;
-    font-size: 30px;
+    font-size: 20px;
 
 }
 
-.hoverflow-hidden {
-    overflow: hidden;
-}
 
 
 .slick-dots li.slick-active button::before {
@@ -19,6 +15,11 @@
     transition: ease-in 0.2s;
 }
 
+.slick-slide>div {
+    margin: 0 10px;
+}
+
+/*
 @media(max-width: 1024px) {
     .slick-arrow::before {
         display: inline-block;
@@ -27,4 +28,4 @@
         margin: -90px
     }
 
-}
+} */
