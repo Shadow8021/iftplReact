@@ -6,16 +6,16 @@ export default function Footer() {
 
                     {/* Formations */}
                     <div className="lg:text-left min-w-full px-4 rounded-2xl border border-blue-600 font-bold text-sm py-1 lg:min-w-70">
-                        <p className="text-2xl font-bold text-white mb-2">Formations</p>
-                        <ul className="text-[10px] flex flex-col gap-1">
+                        <p className="text-2xl font-bold text-[#D00D2D] mb-2">Formations</p>
+                        <ul className="text-[10px] flex flex-col gap-1 lg:text-[15px] lg:gap-0 ">
                             <li className="py-1 text-[#D00D2D]">
-                                <a href="#">Bâtiment et Travaux Publics (BTP)</a>
+                                <a href="#">Bâtiment et Travaux Publics</a>
                             </li>
                             <li className="py-1 text-[#D00D2D]">
-                                <a href="#">Maintenance des Équipements Industriels (MEI)</a>
+                                <a href="#">Maintenance Industriels</a>
                             </li>
                             <li className="py-1 text-[#D00D2D]">
-                                <a href="#">Production des Cultures Vivrières et Industrielles (PCVI)</a>
+                                <a href="#">Production Cultures Industrielles </a>
                             </li>
                             <li className="py-1 text-[#D00D2D]">
                                 <a href="#">Autres...</a>
@@ -25,8 +25,8 @@ export default function Footer() {
 
                     {/* Autres informations */}
                     <div className="w-full px-2 rounded-2xl border border-blue-600 font-bold text-sm py-1 lg:min-w-80 lg:text-center">
-                        <p className="text-2xl font-bold text-white mb-2">Autres informations</p>
-                        <ul className="text-[10px] flex flex-col gap-1">
+                        <p className="text-2xl font-bold text-[#D00D2D] mb-2">Autres informations</p>
+                        <ul className="text-[10px] flex flex-col gap-1 lg:text-[15px] lg:gap-0">
                             <li className="py-1 text-[#D00D2D]">
                                 <a href="#">Conditions d'inscription</a>
                             </li>
@@ -44,8 +44,8 @@ export default function Footer() {
 
                     {/* Liens rapides */}
                     <div className="px-4 min-w-full w-80 rounded-2xl border border-blue-600 font-bold text-sm py-1 lg:text-right lg:min-w-70">
-                        <p className="text-2xl font-bold text-white mb-2">Liens rapides</p>
-                        <ul className="text-[10px] flex flex-col gap-1">
+                        <p className="text-2xl font-bold text-[#D00D2D] mb-2">Liens rapides</p>
+                        <ul className="text-[10px] flex flex-col gap-1 lg:text-[15px] lg:gap-0">
                             <li className="py-1 text-[#D00D2D]">
                                 <a href="#">Galerie</a>
                             </li>
@@ -67,7 +67,7 @@ export default function Footer() {
                     <ul>
                         <li>
                             <a className="font-extralight text-[11px] lg:text-[1rem]" href="#">
-                                © 2025 IFTPL LOUDIMA | Tous les droits sont réservés.
+                                © 2026 IFTPL LOUDIMA | Tous les droits sont réservés.
                             </a>
                         </li>
                     </ul>
