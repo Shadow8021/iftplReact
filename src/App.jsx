@@ -8,6 +8,8 @@ import ProjectForm from './components/projectForm/ProjectForm'
 import Statistique from './components/statistique/Statistique'
 import Partenaires from './components/partenaire/Partenaires'
 import Temoignages from './components/Temoignages/Temoignages'
+import { Contacts } from './components/contacts/Contacts'
+import Footer from './components/footer/Footer'
 export default function App() {
   return (
     <div>
@@ -20,6 +22,8 @@ export default function App() {
       <Statistique />
       <Partenaires />
       <Temoignages />
+      <Contacts />
+      <Footer />
     </div>
   )
 }

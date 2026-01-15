@@ -13,6 +13,7 @@ export default function Temoignages() {
     };
     return (
         <div className="slider-container w-full gap-4 max-w-[80%] mx-auto px-2">
+            <h4 className="text-center text-2xl font-bold text-[#D00D2D]">Témoignages</h4>
             <Slider {...settings}>
                 {
                     infos.map((el, index) => {
