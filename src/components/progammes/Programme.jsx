@@ -6,7 +6,7 @@ export default function Programme() {
             <h3 className="text-center text-2xl font-bold text-[#D00D2D] ">NOS PROGRAMMES</h3>
             <div className="flex flex-col items-center justify-evenly mt-5 w-full gap-5 min-w-90 h-auto p-5 lg:flex-row ">
                 {donnees.map((el, i) => {
-                    return < Filiere titre={donnees[i].titre} logo={donnees[i].logo} />
+                    return < Filiere key={i} titre={donnees[i].titre} logo={donnees[i].logo} />
                 })}
             </div>
             <p

@@ -2,7 +2,7 @@ import image from "../../../public/iftpl.jpg"
 export default function Accesiftpl() {
     return (
         <section className="w-full flex flex-col items-center justify-evenly py-10 px-5 h-auto contenaire lg:flex-row gap-9">
-            <div class="w-full">
+            <div className="w-full">
                 <img src={image} alt="toto" />
             </div>
             <div className="w-full">

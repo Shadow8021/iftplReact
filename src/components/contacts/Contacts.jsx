@@ -5,7 +5,7 @@ export const Contacts = () => {
         <div>
             <section className="w-full flex flex-col bg-[#002E6D] py-5 pb-5 gap-2 mt-9 rounded-t-2xl">
                 <h3 className="mx-auto text-2xl text-white font-bold">Contacts</h3>
-                <div class="flex flex-col w-full px-5 items-center gap-5 justify-center lg:flex-row">
+                <div className="flex flex-col w-full px-5 items-center gap-5 justify-center lg:flex-row">
                     {
                         donnees.map(({ id, Icon, nom, text1, text2 }) => {
                             return (
