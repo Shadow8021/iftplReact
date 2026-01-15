@@ -8,7 +8,7 @@ export default function ProjectForm() {
           technicien
           qualifier avec nos
           formations</h3>
-        <p className="text-xl max-w-xl w-full text-justify pt-5">Nos programmes s’articulent autour de cours immersifs qui vous
+        <p className="text-xl max-w-xl w-full text-justify pt-5 font-bold">Nos programmes s’articulent autour de cours immersifs qui vous
           permettent
           d’apprendre en
           pratiquant, en
