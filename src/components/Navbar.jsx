@@ -14,7 +14,7 @@ export default function Navbar() {
                     <li className="hover:text-[#D00D2D] transition ease-in pointer"><Link to="/actualite">Actualités</Link></li>
                     <li className="hover:text-[#D00D2D] transition ease-in pointer"><Link to="/galerie">Galerie
                     </Link></li>
-                    <li className="hover:text-[#D00D2D] transition ease-in pointer"><Link href="/contact">Contact</Link></li>
+                    <li className="hover:text-[#D00D2D] transition ease-in pointer"><Link to="/contact">Contact</Link></li>
 
                 </ul>
                 <img src={menu} className="lg:hidden sm:hidden" alt="menu" />
