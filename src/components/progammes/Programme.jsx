@@ -11,7 +11,7 @@ export default function Programme() {
             </div>
             <p
                 className="inline-block text-center mx-auto my-4 text-[#D00D2D] p-3 shadow-2xl bg-[#002E6D] font-bold rounded-xl transition ease-in hover:bg-[#0553c1]">
-                <a href="#">...plus de
+                <a href="/formation">...plus de
                     programmes</a>
             </p>
 

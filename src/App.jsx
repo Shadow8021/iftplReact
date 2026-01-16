@@ -7,7 +7,7 @@ import Galerie from "./pages/Galerie/Galerie"
 import Actualite from "./pages/Actualite/Actualite"
 import Error404 from './utils/Error404';
 import MainLayout from './pages/layouts/MainLayout';
-
+import Formation from './pages/Formation/Formation';
 export default function App() {
   return (
     <div>
@@ -20,6 +20,7 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/galerie" element={<Galerie />} />
             <Route path="/actualite" element={<Actualite />} />
+            <Route path="/formation" element={<Formation />} />
           </Route>
           <Route path="*" element={<Error404 />} />
         </Routes>
