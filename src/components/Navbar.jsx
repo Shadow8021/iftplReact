@@ -22,7 +22,7 @@ export default function Navbar() {
                     <li className="hover:text-[#D00D2D] transition ease-in pointer"><NavLink to="/contact">Contact</NavLink></li>
 
                 </ul>
-                <img src={menu} className="lg:hidden sm:hidden" ha alt="menu" />
+                <img src={menu} className="lg:hidden sm:hidden" alt="menu" />
             </nav>
         </div>
     )
