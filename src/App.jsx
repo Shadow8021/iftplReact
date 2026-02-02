@@ -8,6 +8,7 @@ import Actualite from "./pages/Actualite/Actualite"
 import Error404 from './utils/Error404';
 import MainLayout from './pages/layouts/MainLayout';
 import Formation from './pages/Formation/Formation';
+import Loading from './utils/Loading'
 export default function App() {
   return (
     <div>
@@ -15,7 +16,7 @@ export default function App() {
         <Routes>
           <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/Home" element={<Home />} />
+            <Route path="/Home" element={<Home />}/>
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
             <Route path="/galerie" element={<Galerie />} />
