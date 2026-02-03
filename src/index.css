@@ -32,7 +32,8 @@ li:hover {
   object-fit: cover;
   background-attachment: center;
   background-repeat: no-repeat;
-  background-position: center
+  background-position: center;
+  width: 100%;
 }
 
 .heroFilter {
