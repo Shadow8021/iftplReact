@@ -1,7 +1,8 @@
 import logo from "../../public/logo1.svg";
-import { Menu } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+
 
 export default function Navbar() {
     const items = [
@@ -47,7 +48,8 @@ export default function Navbar() {
                         className="md:hidden"
                         aria-label="menu"
                     >
-                        <Menu size={40} className="lg:hidden sm:hidden" color="white" strokeWidth={2.25} />
+                        {open ? <X size={40} className="lg:hidden sm:hidden" color="white" strokeWidth={2.25} />
+                            : <Menu size={40} className="lg:hidden sm:hidden" color="white" strokeWidth={2.25} />}
                     </button>
                 </div>
             </div>
@@ -56,7 +58,8 @@ export default function Navbar() {
             <div className={`md:hidden transition-all duration-300 ${open ? "block" : "hidden"}`}>
                 <ul className="px-4 pb-4 space-y-3 bg-gray-600">
                     {items.map((el, index) => (
-                        <li key={index} className="hover:text-[#D00D2D] transition ease-in pointer text-right"><NavLink to={el.path}>{el.nom}</NavLink></li>
+
+                        <li key={index} className="hover:text-[#D00D2D] transition ease-in pointer text-right"><NavLink onClick={() => setOpen(!open)} to={el.path}>{el.nom}</NavLink></li>
                     ))}
                 </ul>
             </div>
