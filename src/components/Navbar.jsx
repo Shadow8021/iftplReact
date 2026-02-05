@@ -48,8 +48,8 @@ export default function Navbar() {
                         className="md:hidden"
                         aria-label="menu"
                     >
-                        {open ? <X size={40} className="lg:hidden sm:hidden" color="white" strokeWidth={2.25} />
-                            : <Menu size={40} className="lg:hidden sm:hidden" color="white" strokeWidth={2.25} />}
+                        {open ? <X size={40} className="lg:hidden sm:hidden transition ease-in-out" color="white" strokeWidth={2.25} />
+                            : <Menu size={40} className="lg:hidden sm:hidden transition ease-in-out" color="white" strokeWidth={2.25} />}
                     </button>
                 </div>
             </div>
