@@ -55,7 +55,7 @@ export default function Navbar() {
             </div>
 
             {/* Menu mobile */}
-            <div className={`md:hidden transition-all duration-300 ${open ? "block" : "hidden"}`}>
+            <div className={`md:hidden z-10 transition-all duration-300 ${open ? "block" : "hidden"}`}>
                 <ul className="px-4 pb-4 space-y-3 bg-[#1907521b] ">
                     {items.map((el, index) => (
 
