@@ -54,7 +54,7 @@ export default function Navbar() {
 
             {/* Menu mobile */}
             <div className={`md:hidden transition-all duration-300 ${open ? "block" : "hidden"}`}>
-                <ul className="px-4 pb-4 space-y-3 bg-gray-900">
+                <ul className="px-4 pb-4 space-y-3 bg-gray-600">
                     {items.map((el, index) => (
                         <li key={index} className="hover:text-[#D00D2D] transition ease-in pointer text-right"><NavLink to={el.path}>{el.nom}</NavLink></li>
                     ))}
