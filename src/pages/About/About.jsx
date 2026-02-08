@@ -117,8 +117,8 @@ export default function About() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {achievements.map((item, index) => (
                             <div key={index} className="text-center">
-                                <div className="text-5xl font-bold text-[#D00D2D] mb-3">{item.number}</div>
-                                <p className="text-lg text-blue-100">{item.label}</p>
+                                <div className="text-xl sm:text-5xl font-bold text-[#D00D2D] mb-3">{item.number}</div>
+                                <p className="sm:text-lg text-blue-100">{item.label}</p>
                             </div>
                         ))}
                     </div>
@@ -129,19 +129,57 @@ export default function About() {
             <section className="w-full py-16 px-5 bg-white">
                 <div className="max-w-7xl mx-auto">
                     <h2 className="text-4xl font-bold text-[#002E6D] text-center mb-12">Notre Histoire</h2>
-                    <div className="relative">
-                        <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-[#D00D2D]"></div>
+
+                    {/* Desktop Timeline - Alternating Layout */}
+                    <div className="hidden md:block relative">
+                        {/* Center Line */}
+                        <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-[#D00D2D] to-[#002E6D]"></div>
+
                         <div className="space-y-12">
                             {timeline.map((item, index) => (
-                                <div key={index} className={`flex ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
-                                    <div className="w-1/2"></div>
-                                    <div className="w-1/2 px-8">
-                                        <div className={`bg-white p-6 rounded-xl shadow-lg ${index % 2 === 0 ? 'ml-auto mr-8' : 'ml-8 mr-auto'}`}>
-                                            <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-[#D00D2D] rounded-full border-4 border-white"></div>
-                                            <div className="text-[#D00D2D] font-bold text-lg mb-2">{item.year}</div>
-                                            <h3 className="text-xl font-bold text-[#002E6D] mb-2">{item.title}</h3>
-                                            <p className="text-gray-600">{item.description}</p>
+                                <div key={index} className="relative">
+                                    {/* Left Side - Even Index */}
+                                    {index % 2 === 0 && (
+                                        <div className="flex justify-end pr-8 md:pr-16">
+                                            <div className="w-full md:w-5/12 bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border-l-4 border-[#D00D2D]">
+                                                <div className="text-[#D00D2D] font-bold text-lg mb-2">{item.year}</div>
+                                                <h3 className="text-xl font-bold text-[#002E6D] mb-2">{item.title}</h3>
+                                                <p className="text-gray-600">{item.description}</p>
+                                            </div>
                                         </div>
+                                    )}
+
+                                    {/* Center Dot */}
+                                    <div className="absolute left-1/2 transform -translate-x-1/2 top-0 w-6 h-6 bg-[#D00D2D] rounded-full border-4 border-white shadow-lg"></div>
+
+                                    {/* Right Side - Odd Index */}
+                                    {index % 2 === 1 && (
+                                        <div className="flex justify-start pl-8 md:pl-16">
+                                            <div className="w-full md:w-5/12 bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border-r-4 border-[#D00D2D]">
+                                                <div className="text-[#D00D2D] font-bold text-lg mb-2">{item.year}</div>
+                                                <h3 className="text-xl font-bold text-[#002E6D] mb-2">{item.title}</h3>
+                                                <p className="text-gray-600">{item.description}</p>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Mobile Timeline - Single Column */}
+                    <div className="md:hidden space-y-8">
+                        <div className="relative pl-8 border-l-4 border-gradient-to-b border-[#D00D2D]">
+                            {timeline.map((item, index) => (
+                                <div key={index} className="mb-8 relative">
+                                    {/* Mobile Dot */}
+                                    <div className="absolute -left-6 top-1 w-4 h-4 bg-[#D00D2D] rounded-full border-2 border-white shadow-lg"></div>
+
+                                    {/* Mobile Card */}
+                                    <div className="bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                                        <div className="text-[#D00D2D] font-bold text-base mb-1">{item.year}</div>
+                                        <h3 className="text-lg font-bold text-[#002E6D] mb-2">{item.title}</h3>
+                                        <p className="text-gray-600 text-sm">{item.description}</p>
                                     </div>
                                 </div>
                             ))}
