@@ -37,7 +37,7 @@ function AppContent() {
           <Route path="/galerie" element={<Galerie />} />
           <Route path="/actualite" element={<Actualite />} />
           <Route path="/formation" element={<Formation />} />
-          <Route path="/formation-detail" element={<FormationDetail />} />
+          <Route path="/formation-detail/:id" element={<FormationDetail />} />
         </Route>
         <Route path="*" element={<Error404 />} />
       </Routes>

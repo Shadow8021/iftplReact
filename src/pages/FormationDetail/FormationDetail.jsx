@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams, useLocation } from 'react-router-dom'
 import { CheckCircle, Clock, Users, Award, BookOpen, Briefcase, ArrowRight } from 'lucide-react';
 
 export default function FormationDetail() {
     const [activeTab, setActiveTab] = useState('overview');
 
-    const formation = {
+    const defaultFormation = {
         titre: "Maintenance des Équipements Industriels",
         description: "Formation complète pour maîtriser la maintenance préventive et corrective des équipements industriels.",
         image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1200&h=600&fit=crop",
@@ -13,6 +14,19 @@ export default function FormationDetail() {
         place: "15-20 places",
         certification: "Diplôme d'État Reconnu"
     };
+
+    const { id } = useParams()
+    const location = useLocation()
+    const [formation, setFormation] = useState(defaultFormation)
+
+    useEffect(() => {
+        if (location.state && location.state.formation) {
+            setFormation(location.state.formation)
+        } else if (id) {
+            // If no state passed, you can later fetch by id. For now, keep default or extend mapping.
+            setFormation(prev => ({ ...prev }))
+        }
+    }, [id, location])
 
     const sections = [
         {
@@ -206,8 +220,8 @@ export default function FormationDetail() {
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
                                 className={`px-6 py-3 rounded-lg font-semibold whitespace-nowrap transition-all ${activeTab === tab.id
-                                        ? 'bg-[#D00D2D] text-white'
-                                        : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                                    ? 'bg-[#D00D2D] text-white'
+                                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
                                     }`}
                             >
                                 {tab.label}

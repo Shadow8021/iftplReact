@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Formation() {
     const formations = [
@@ -126,12 +127,13 @@ export default function Formation() {
                                 </div>
 
                                 {/* Bouton */}
-                                <a
-                                    href="#"
+                                <Link
+                                    to={`/formation-detail/${formation.id}`}
+                                    state={{ formation }}
                                     className="w-full block text-center bg-[#002E6D] text-white font-bold py-3 rounded-lg hover:bg-[#0553c1] transition-colors duration-300"
                                 >
                                     En savoir plus
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     ))}
