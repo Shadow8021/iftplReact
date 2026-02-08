@@ -62,7 +62,7 @@ export default function About() {
     return (
         <div className="w-full">
             {/* Hero Section */}
-            <section className="w-full bg-gradient-to-r from-[#002E6D] to-[#0553c1] text-white py-20 px-5">
+            <section className="w-full bg-linear-to-r from-[#002E6D] to-[#0553c1] text-white py-20 px-5">
                 <div className="max-w-7xl mx-auto text-center">
                     <h1 className="text-5xl lg:text-6xl font-bold mb-6">À propos de l'IFTPL</h1>
                     <p className="text-xl text-blue-100 max-w-3xl mx-auto">
@@ -111,7 +111,7 @@ export default function About() {
             </section>
 
             {/* Achievements Section */}
-            <section className="w-full py-16 px-5 bg-gradient-to-r from-[#002E6D] to-[#0553c1] text-white">
+            <section className="w-full py-16 px-5 bg-linear-to-r from-[#002E6D] to-[#0553c1] text-white">
                 <div className="max-w-7xl mx-auto">
                     <h2 className="text-4xl font-bold text-center mb-12">Nos Réalisations</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -133,7 +133,7 @@ export default function About() {
                     {/* Desktop Timeline - Alternating Layout */}
                     <div className="hidden md:block relative">
                         {/* Center Line */}
-                        <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-[#D00D2D] to-[#002E6D]"></div>
+                        <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-linear-to-b from-[#D00D2D] to-[#002E6D]"></div>
 
                         <div className="space-y-12">
                             {timeline.map((item, index) => (
@@ -189,7 +189,7 @@ export default function About() {
             </section>
 
             {/* CTA Section */}
-            <section className="w-full py-16 px-5 bg-gradient-to-r from-[#D00D2D] to-[#ff1a3c]">
+            <section className="w-full py-16 px-5 bg-linear-to-r from-[#D00D2D] to-[#ff1a3c]">
                 <div className="max-w-4xl mx-auto text-center text-white">
                     <h2 className="text-4xl font-bold mb-6">Rejoignez-nous Aujourd'hui</h2>
                     <p className="text-xl mb-8 text-red-100">

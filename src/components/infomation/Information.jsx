@@ -16,10 +16,10 @@ export default function Information() {
           {donnees.map((dta, index) => (
             <div
               key={index}
-              className="bg-gradient-to-br from-[#f5f5f5] to-white border-l-4 border-[#D00D2D] p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+              className="bg-linear-to-br from-[#f5f5f5] to-white border-l-4 border-[#D00D2D] p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
             >
               <div className="flex items-start gap-4 mb-4">
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   <img className="w-16 h-16 object-contain" src={dta.logo} alt="logo" />
                 </div>
                 <div className="flex-1">

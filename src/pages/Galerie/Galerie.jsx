@@ -90,7 +90,7 @@ export default function Galerie() {
     return (
         <div className='w-full'>
             {/* Hero Section */}
-            <section className="w-full bg-gradient-to-r from-[#002E6D] to-[#0553c1] text-white py-16 px-5">
+            <section className="w-full bg-linear-to-r from-[#002E6D] to-[#0553c1] text-white py-16 px-5">
                 <div className="max-w-7xl mx-auto text-center">
                     <h1 className="text-5xl lg:text-6xl font-bold mb-6">Galerie de l'IFTPL</h1>
                     <p className="text-xl text-blue-100 max-w-3xl mx-auto">
@@ -108,8 +108,8 @@ export default function Galerie() {
                                 key={category}
                                 onClick={() => setActiveCategory(category)}
                                 className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${activeCategory === category
-                                        ? 'bg-[#D00D2D] text-white shadow-lg'
-                                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                                    ? 'bg-[#D00D2D] text-white shadow-lg'
+                                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                                     }`}
                             >
                                 {category}

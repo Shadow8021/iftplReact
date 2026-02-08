@@ -68,7 +68,7 @@ export default function Formation() {
     return (
         <div>
             {/* debut de la section formations disponibles */}
-            <section className="w-full min-h-screen bg-gradient-to-b from-[#f5f5f5] to-[#ffffff] py-16 px-5">
+            <section className="w-full min-h-screen bg-linear-to-b from-[#f5f5f5] to-[#ffffff] py-16 px-5">
 
                 {/* En-tête */}
                 <div className="max-w-7xl mx-auto mb-12">
@@ -140,7 +140,7 @@ export default function Formation() {
                 </div>
 
                 {/* CTA Section */}
-                <div className="mt-16 bg-gradient-to-r from-[#002E6D] to-[#0553c1] rounded-2xl p-8 max-w-4xl mx-auto text-center text-white">
+                <div className="mt-16 bg-linear-to-r from-[#002E6D] to-[#0553c1] rounded-2xl p-8 max-w-4xl mx-auto text-center text-white">
                     <h3 className="text-2xl font-bold mb-2">Prêt à commencer ?</h3>
                     <p className="mb-6 text-blue-100">Inscrivez-vous dès maintenant et rejoignez des centaines d'autres étudiants satisfaits</p>
                     <button className="bg-[#D00D2D] hover:bg-[#ff1a3c] text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300">

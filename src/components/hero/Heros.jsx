@@ -3,7 +3,7 @@ import { ArrowRight, Play } from 'lucide-react'
 
 export default function Heros() {
     return (
-        <section className="w-full h-auto bg-gradient-to-r from-[#002E6D] via-[#005ba3] to-[#0070d4] text-white relative overflow-hidden">
+        <section className="w-full h-auto bg-linear-to-r from-[#002E6D] via-[#005ba3] to-[#0070d4] text-white relative overflow-hidden">
             {/* Background decoration */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-[#D00D2D] opacity-10 rounded-full blur-3xl"></div>
@@ -62,7 +62,7 @@ export default function Heros() {
                     {/* Right Image */}
                     <div className="hidden lg:block">
                         <div className="relative">
-                            <div className="absolute inset-0 bg-gradient-to-r from-[#D00D2D] to-[#ff1a3c] rounded-2xl blur-3xl opacity-30"></div>
+                            <div className="absolute inset-0 bg-linear-to-r from-[#D00D2D] to-[#ff1a3c] rounded-2xl blur-3xl opacity-30"></div>
                             <img
                                 src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=700&fit=crop"
                                 alt="Formation IFTPL"

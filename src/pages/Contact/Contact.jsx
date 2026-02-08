@@ -58,7 +58,7 @@ export default function Contact() {
     return (
         <div className="w-full">
             {/* Hero Section */}
-            <section className="w-full bg-gradient-to-r from-[#002E6D] to-[#0553c1] text-white py-16 px-5">
+            <section className="w-full bg-linear-to-r from-[#002E6D] to-[#0553c1] text-white py-16 px-5">
                 <div className="max-w-7xl mx-auto text-center">
                     <h1 className="text-5xl lg:text-6xl font-bold mb-6">Entrez en <span className="text-[#D00D2D]">Contact</span></h1>
                     <p className="text-xl text-blue-100 max-w-3xl mx-auto">
@@ -91,7 +91,7 @@ export default function Contact() {
             </section>
 
             {/* Contact Form Section */}
-            <section className="w-full py-16 px-5 bg-gradient-to-r from-[#002E6D] to-[#0553c1] text-white">
+            <section className="w-full py-16 px-5 bg-linear-to-r from-[#002E6D] to-[#0553c1] text-white">
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                         {/* Form */}
@@ -175,7 +175,7 @@ export default function Contact() {
                             </div>
 
                             {/* Hours */}
-                            <div className="bg-gradient-to-br from-[#002E6D] to-[#0553c1] text-white p-8 rounded-2xl shadow-lg">
+                            <div className="bg-linear-to-br from-[#002E6D] to-[#0553c1] text-white p-8 rounded-2xl shadow-lg">
                                 <h3 className="text-2xl font-bold mb-6">Horaires d'Ouverture</h3>
                                 <div className="space-y-3">
                                     <div className="flex justify-between">
@@ -219,7 +219,7 @@ export default function Contact() {
             </section>
 
             {/* CTA Section */}
-            <section className="w-full py-16 px-5 bg-gradient-to-r from-[#D00D2D] to-[#ff1a3c] text-white">
+            <section className="w-full py-16 px-5 bg-linear-to-r from-[#D00D2D] to-[#ff1a3c] text-white">
                 <div className="max-w-4xl mx-auto text-center">
                     <h2 className="text-3xl font-bold mb-4">Avez vous d'autres questions ?</h2>
                     <p className="text-lg text-red-100 mb-8">

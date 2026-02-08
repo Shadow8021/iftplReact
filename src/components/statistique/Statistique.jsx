@@ -2,7 +2,7 @@ import { donnees } from './stats'
 
 export default function Statistique() {
   return (
-    <section className="w-full py-16 px-5 bg-gradient-to-r from-[#002E6D] to-[#0553c1] text-white">
+    <section className="w-full py-16 px-5 bg-linear-to-r from-[#002E6D] to-[#0553c1] text-white">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl font-bold text-center mb-12">Nos Réalisations</h2>
 

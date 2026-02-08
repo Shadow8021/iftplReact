@@ -11,7 +11,7 @@ export default function Partenaires() {
                     </p>
                 </div>
 
-                <div className="bg-gradient-to-r from-[#f5f5f5] to-[#ffffff] p-12 rounded-2xl">
+                <div className="bg-linear-to-r from-[#f5f5f5] to-[#ffffff] p-12 rounded-2xl">
                     <div className="flex flex-wrap gap-8 justify-center items-center">
                         {donnees.map((el, index) => {
                             return (

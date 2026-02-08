@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom'
+import React, { useState } from 'react';
 import { CheckCircle, Clock, Users, Award, BookOpen, Briefcase, ArrowRight } from 'lucide-react';
 
 export default function FormationDetail() {
     const [activeTab, setActiveTab] = useState('overview');
 
-    const defaultFormation = {
+    const formation = {
         titre: "Maintenance des Équipements Industriels",
         description: "Formation complète pour maîtriser la maintenance préventive et corrective des équipements industriels.",
         image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1200&h=600&fit=crop",
@@ -14,19 +13,6 @@ export default function FormationDetail() {
         place: "15-20 places",
         certification: "Diplôme d'État Reconnu"
     };
-
-    const { id } = useParams()
-    const location = useLocation()
-    const [formation, setFormation] = useState(defaultFormation)
-
-    useEffect(() => {
-        if (location.state && location.state.formation) {
-            setFormation(location.state.formation)
-        } else if (id) {
-            // If no state passed, you can later fetch by id. For now, keep default or extend mapping.
-            setFormation(prev => ({ ...prev }))
-        }
-    }, [id, location])
 
     const sections = [
         {
@@ -232,14 +218,14 @@ export default function FormationDetail() {
             </section>
 
             {/* Content */}
-            <section className="w-full py-16 px-5 bg-white flex-grow">
+            <section className="w-full py-16 px-5 bg-white grow">
                 <div className="max-w-7xl mx-auto">
                     {/* Vue d'ensemble */}
                     {activeTab === 'overview' && (
                         <div className="space-y-12">
                             <div>
                                 <h2 className="text-3xl font-bold text-[#002E6D] mb-6">À propos de cette formation</h2>
-                                <div className="bg-gradient-to-r from-[#f5f5f5] to-white p-8 rounded-2xl border-l-4 border-[#D00D2D]">
+                                <div className="bg-linear-to-r from-[#f5f5f5] to-white p-8 rounded-2xl border-l-4 border-[#D00D2D]">
                                     <p className="text-lg text-gray-700 leading-relaxed mb-6">
                                         Cette formation complète prépare les étudiants à devenir des techniciens en maintenance industrielle hautement qualifiés. Elle combine théorie et pratique pour assurer une intégration rapide dans le monde professionnel.
                                     </p>
@@ -290,7 +276,7 @@ export default function FormationDetail() {
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                             {section.contenu.map((item, i) => (
                                                 <div key={i} className="flex items-start gap-3">
-                                                    <CheckCircle className="w-5 h-5 text-[#D00D2D] flex-shrink-0 mt-1" />
+                                                    <CheckCircle className="w-5 h-5 text-[#D00D2D] shrink-0 mt-1" />
                                                     <span className="text-gray-700">{item}</span>
                                                 </div>
                                             ))}
@@ -307,8 +293,8 @@ export default function FormationDetail() {
                             <h2 className="text-3xl font-bold text-[#002E6D] mb-8">Compétences Acquises</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {competences.map((competence, idx) => (
-                                    <div key={idx} className="flex items-start gap-4 p-6 bg-gradient-to-br from-[#f5f5f5] to-white rounded-xl border-l-4 border-[#D00D2D]">
-                                        <CheckCircle className="w-6 h-6 text-[#D00D2D] flex-shrink-0 mt-1" />
+                                    <div key={idx} className="flex items-start gap-4 p-6 bg-linear-to-br from-[#f5f5f5] to-white rounded-xl border-l-4 border-[#D00D2D]">
+                                        <CheckCircle className="w-6 h-6 text-[#D00D2D] shrink-0 mt-1" />
                                         <span className="text-gray-700 font-semibold">{competence}</span>
                                     </div>
                                 ))}
@@ -320,12 +306,12 @@ export default function FormationDetail() {
                     {activeTab === 'prerequis' && (
                         <div>
                             <h2 className="text-3xl font-bold text-[#002E6D] mb-8">Prérequis et Conditions d'Admission</h2>
-                            <div className="bg-gradient-to-r from-[#002E6D] to-[#0553c1] text-white p-8 rounded-2xl mb-8">
+                            <div className="bg-linear-to-r from-[#002E6D] to-[#0553c1] text-white p-8 rounded-2xl mb-8">
                                 <h3 className="text-2xl font-bold mb-6">Conditions d'Accès</h3>
                                 <ul className="space-y-3">
                                     {prérequis.map((prereq, idx) => (
                                         <li key={idx} className="flex items-start gap-3">
-                                            <CheckCircle className="w-6 h-6 text-[#D00D2D] flex-shrink-0 mt-1" />
+                                            <CheckCircle className="w-6 h-6 text-[#D00D2D] shrink-0 mt-1" />
                                             <span className="text-lg">{prereq}</span>
                                         </li>
                                     ))}
@@ -352,7 +338,7 @@ export default function FormationDetail() {
                                 {emplois.map((emploi, idx) => (
                                     <div key={idx} className="bg-white p-8 rounded-xl shadow-lg border-t-4 border-[#D00D2D]">
                                         <div className="flex items-start gap-3 mb-4">
-                                            <Briefcase className="w-7 h-7 text-[#D00D2D] flex-shrink-0" />
+                                            <Briefcase className="w-7 h-7 text-[#D00D2D] shrink-0" />
                                             <h3 className="text-xl font-bold text-[#002E6D]">{emploi.titre}</h3>
                                         </div>
                                         <p className="text-gray-600 leading-relaxed">{emploi.entreprises}</p>
@@ -365,7 +351,7 @@ export default function FormationDetail() {
             </section>
 
             {/* CTA Section */}
-            <section className="w-full py-16 px-5 bg-gradient-to-r from-[#D00D2D] to-[#ff1a3c] text-white">
+            <section className="w-full py-16 px-5 bg-linear-to-r from-[#D00D2D] to-[#ff1a3c] text-white">
                 <div className="max-w-4xl mx-auto text-center">
                     <h2 className="text-4xl font-bold mb-6">Prêt à Commencer Votre Parcours ?</h2>
                     <p className="text-xl text-red-100 mb-8">

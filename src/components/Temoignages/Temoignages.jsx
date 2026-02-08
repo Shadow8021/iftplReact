@@ -17,7 +17,7 @@ export default function Temoignages() {
     };
 
     return (
-        <section className="w-full py-16 px-5 bg-gradient-to-b from-[#f5f5f5] to-white">
+        <section className="w-full py-16 px-5 bg-linear-to-b from-[#f5f5f5] to-white">
             <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-12">
                     <h2 className="text-4xl font-bold text-[#002E6D] mb-4">Témoignages</h2>
