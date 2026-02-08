@@ -2,39 +2,70 @@ import { infos } from "./infos"
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Star } from 'lucide-react'
 import "./style.css"
+
 export default function Temoignages() {
     const settings = {
         dots: true,
         infinite: true,
         speed: 500,
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000
     };
+
     return (
-        <div className="slider-container w-full gap-4 max-w-[80%] mx-auto px-2">
-            <h4 className="text-center text-2xl font-bold text-[#D00D2D]">Témoignages</h4>
-            <Slider {...settings}>
-                {
-                    infos.map((el, index) => {
-                        return (
-                            <div key={index} className="w-12 bg-[#002E6D]  h-50 px-2 py-5 mx-auto rounded-xl">
-                                <div className="flex items-center justify-center w-full h-full gap-1 px-3 my-auto md:justify-evently md:gap-6">
-                                    <div className=" w-70 flex items-center justify-center rounded-full obsolute md:w-25 ">
-                                        <img className="rounded-full relative" src={el.photo} alt="profil" />
-                                        <span className="relative right-3 inline-block top-6">{el.nationnalite}</span>
-                                    </div>
-                                    <div className="flex flex-col justify-center gap-4 max-w-70 h-40 py-5 px-2 md:gap-2">
-                                        <h5 className="text-lg font-bold text-white md:text-xl">{el.prenom + " " + el.nom.toUpperCase()}</h5>
-                                        <p className="text-[11px] mx-h-30 text-white md:text-[15px]">{el.message} </p>
+        <section className="w-full py-16 px-5 bg-gradient-to-b from-[#f5f5f5] to-white">
+            <div className="max-w-4xl mx-auto">
+                <div className="text-center mb-12">
+                    <h2 className="text-4xl font-bold text-[#002E6D] mb-4">Témoignages</h2>
+                    <p className="text-gray-600 text-lg">
+                        Découvrez ce que nos anciens étudiants pensent de leur expérience à l'IFTPL
+                    </p>
+                </div>
+
+                <div className="slider-container">
+                    <Slider {...settings}>
+                        {infos.map((el, index) => {
+                            return (
+                                <div key={index} className="px-4">
+                                    <div className="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-[#D00D2D]">
+                                        {/* Stars */}
+                                        <div className="flex gap-1 mb-4">
+                                            {[...Array(5)].map((_, i) => (
+                                                <Star key={i} className="w-5 h-5 fill-[#D00D2D] text-[#D00D2D]" />
+                                            ))}
+                                        </div>
+
+                                        {/* Testimonial Text */}
+                                        <p className="text-gray-700 text-lg mb-6 italic leading-relaxed">
+                                            "{el.message}"
+                                        </p>
+
+                                        {/* Author Info */}
+                                        <div className="flex items-center gap-4 pt-6 border-t border-gray-200">
+                                            <img
+                                                className="w-16 h-16 rounded-full object-cover border-2 border-[#D00D2D]"
+                                                src={el.photo}
+                                                alt={el.prenom}
+                                            />
+                                            <div>
+                                                <h4 className="font-bold text-[#002E6D] text-lg">
+                                                    {el.prenom} {el.nom.toUpperCase()}
+                                                </h4>
+                                                <p className="text-sm text-gray-600">{el.nationnalite}</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        )
-                    })
-                }
-            </Slider>
-        </div>
+                            )
+                        })}
+                    </Slider>
+                </div>
+            </div>
+        </section>
     );
 }
 
