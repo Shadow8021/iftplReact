@@ -36,7 +36,7 @@ export default function Navbar() {
                     </div>
 
                     {/* Menu desktop */}
-                    <ul className="hidden md:flex space-x-8">
+                    <ul className="hidden sm:flex space-x-8">
                         {items.map((el, index) => (
                             <li key={index} className="hover:text-[#D00D2D] transition ease-in pointer"><NavLink to={el.path}>{el.nom}</NavLink></li>
                         ))}
