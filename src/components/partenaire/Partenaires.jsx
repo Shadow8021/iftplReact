@@ -8,7 +8,7 @@ export default function Partenaires() {
                     donnees.map((el, index) => {
                         return (
                             <div key={index} className="w-20 px-2">
-                                <a href="#"><img className="rounded-2xl" src={el.logo} alt={el.alt} /></a>
+                                <a href={el.site}><img className="rounded-2xl" src={el.logo} alt={el.alt} /></a>
                             </div>
                         )
                     })
