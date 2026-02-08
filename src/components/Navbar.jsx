@@ -11,7 +11,7 @@ export default function Navbar() {
             path: "/"
         }, {
             nom: "A propos",
-            path: ""
+            path: "/About"
         }, {
             nom: "Formations",
             path: "/formation"
