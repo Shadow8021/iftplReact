@@ -13,7 +13,7 @@ export default function Heros() {
             {/* Content */}
             <div className="relative z-10 max-w-7xl mx-auto px-5 py-20 lg:py-40">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    
+
                     {/* Left Content */}
                     <div className="space-y-8">
                         <div>
@@ -63,9 +63,9 @@ export default function Heros() {
                     <div className="hidden lg:block">
                         <div className="relative">
                             <div className="absolute inset-0 bg-gradient-to-r from-[#D00D2D] to-[#ff1a3c] rounded-2xl blur-3xl opacity-30"></div>
-                            <img 
-                                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=700&fit=crop" 
-                                alt="Formation IFTPL" 
+                            <img
+                                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=700&fit=crop"
+                                alt="Formation IFTPL"
                                 className="relative rounded-2xl shadow-2xl w-full h-full object-cover"
                             />
                             {/* Play Button Overlay */}

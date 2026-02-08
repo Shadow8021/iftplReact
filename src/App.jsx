@@ -1,5 +1,6 @@
 import './App.css'
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom"
+import { useEffect, useState } from 'react'
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact"
 import Home from "./pages/Home/Home"
@@ -9,23 +10,45 @@ import Error404 from './utils/Error404';
 import MainLayout from './pages/layouts/MainLayout';
 import Formation from './pages/Formation/Formation';
 import Loading from './utils/Loading'
+import FormationDetail from './pages/FormationDetail/FormationDetail';
+
+function AppContent() {
+  const location = useLocation()
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    setIsLoading(true)
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 800)
+
+    return () => clearTimeout(timer)
+  }, [location])
+
+  return (
+    <>
+      {isLoading && <Loading />}
+      <Routes>
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/Home" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/galerie" element={<Galerie />} />
+          <Route path="/actualite" element={<Actualite />} />
+          <Route path="/formation" element={<Formation />} />
+          <Route path="/formation-detail" element={<FormationDetail />} />
+        </Route>
+        <Route path="*" element={<Error404 />} />
+      </Routes>
+    </>
+  )
+}
+
 export default function App() {
   return (
-    <div>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<MainLayout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/Home" element={<Home />}/>
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/galerie" element={<Galerie />} />
-            <Route path="/actualite" element={<Actualite />} />
-            <Route path="/formation" element={<Formation />} />
-          </Route>
-          <Route path="*" element={<Error404 />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
   )
 }
