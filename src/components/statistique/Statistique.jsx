@@ -7,7 +7,7 @@ export default function Statistique() {
         {
           donnees.map((el, index) => (
             <div key={index} className="w-1/3  h-20 flex justify-center px-6 gap-2 items-center text-xl">
-              <p className="text-lg text-center"><span className="text-[#D00D2D] text-xl font-bold">{el.nbr} </span>{el.texte}</p>
+              <p className="text-lg text-center text-black"><span className="text-[#D00D2D] text-xl font-bold">{el.nbr} </span>{el.texte}</p>
             </div>
 
           ))
