@@ -9,7 +9,7 @@ import Actualite from "./pages/Actualite/Actualite"
 import Error404 from './utils/Error404';
 import MainLayout from './pages/layouts/MainLayout';
 import Formation from './pages/Formation/Formation';
-import Loading from './utils/Loading'
+import Loading from './utils/loading'
 import FormationDetail from './pages/FormationDetail/FormationDetail';
 
 function AppContent() {
