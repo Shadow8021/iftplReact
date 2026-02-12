@@ -2,6 +2,21 @@ import React from 'react'
 import { ArrowRight, Play } from 'lucide-react'
 
 export default function Heros() {
+    let infos = [
+        {
+            id: 1,
+            nbr: "15+",
+            texte: "Ans d'expérience"
+        }, {
+            id: 2,
+            nbr: "5000+",
+            texte: "Étudiants formés"
+        }, {
+            id: 3,
+            nbr: "95%",
+            texte: "Taux de réussite"
+        }
+    ]
     return (
         <section className="w-full h-auto bg-linear-to-r from-[#002E6D] via-[#005ba3] to-[#0070d4] text-white relative overflow-hidden">
             {/* Background decoration */}
@@ -44,18 +59,14 @@ export default function Heros() {
 
                         {/* Stats */}
                         <div className="flex flex-wrap gap-6 pt-8 border-t border-white border-opacity-20">
-                            <div>
-                                <div className="text-4xl font-bold text-[#D00D2D]">15+</div>
-                                <p className="text-blue-100">Ans d'expérience</p>
-                            </div>
-                            <div>
-                                <div className="text-4xl font-bold text-[#D00D2D]">5000+</div>
-                                <p className="text-blue-100">Étudiants formés</p>
-                            </div>
-                            <div>
-                                <div className="text-4xl font-bold text-[#D00D2D]">95%</div>
-                                <p className="text-blue-100">Taux de réussite</p>
-                            </div>
+                            {
+                                infos.map((info) => (
+                                    <div key={info.id} className="text-center">
+                                        <div className="text-4xl font-bold text-[#D00D2D]">{info.nbr}</div>
+                                        <p className="text-blue-100">{info.texte}</p>
+                                    </div>
+                                ))}
+
                         </div>
                     </div>
 
