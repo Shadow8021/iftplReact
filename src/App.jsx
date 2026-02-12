@@ -9,9 +9,8 @@ import Actualite from "./pages/Actualite/Actualite"
 import Error404 from './utils/Error404';
 import MainLayout from './pages/layouts/MainLayout';
 import Formation from './pages/Formation/Formation';
-import Loading from './utils/loading'
 import FormationDetail from './pages/FormationDetail/FormationDetail';
-
+import Loading from './pages/layouts/Loading';
 function AppContent() {
   const location = useLocation()
   const [isLoading, setIsLoading] = useState(false)
