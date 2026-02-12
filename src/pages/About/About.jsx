@@ -1,4 +1,3 @@
-import React from 'react'
 import { CheckCircle, Target, Heart, Users } from 'lucide-react'
 
 export default function About() {
@@ -64,7 +63,7 @@ export default function About() {
             {/* Hero Section */}
             <section className="w-full bg-linear-to-r from-[#002E6D] to-[#0553c1] text-white py-20 px-5">
                 <div className="max-w-7xl mx-auto text-center">
-                    <h1 className="text-5xl lg:text-6xl font-bold mb-6">À propos de l'IFTPL</h1>
+                    <h1 className="text-5xl lg:text-6xl font-bold mb-6 text-red-600">À propos de l'IFTPL</h1>
                     <p className="text-xl text-blue-100 max-w-3xl mx-auto">
                         Depuis plus de 15 ans, l'Institut de Formation Technique et Professionnelle de Loudima forme les talents de demain en offrant une éducation de qualité, adaptée aux réalités du marché du travail moderne.
                     </p>
@@ -76,7 +75,7 @@ export default function About() {
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         <div>
-                            <h2 className="text-4xl font-bold text-[#002E6D] mb-6">Notre Mission</h2>
+                            <h2 className="text-4xl font-bold text-red-600 mb-6">Notre Mission</h2>
                             <p className="text-gray-700 text-lg mb-4">
                                 Former des professionnels compétents, éthiques et responsables, capables de contribuer au développement socio-économique de la République du Congo et de toute la région.
                             </p>
@@ -97,7 +96,7 @@ export default function About() {
             {/* Values Section */}
             <section className="w-full py-16 px-5 bg-[#f5f5f5]">
                 <div className="max-w-7xl mx-auto">
-                    <h2 className="text-4xl font-bold text-[#002E6D] text-center mb-12">Nos Valeurs</h2>
+                    <h2 className="text-4xl font-bold text-red-600 text-center mb-12">Nos Valeurs</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {values.map((value) => (
                             <div key={value.id} className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow text-center">
