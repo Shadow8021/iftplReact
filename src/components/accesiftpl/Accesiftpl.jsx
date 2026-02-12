@@ -1,4 +1,4 @@
-import image from "../../../public/iftpl.jpg"
+import image from "/iftpl.jpg"
 import { Asterisk } from 'lucide-react';
 
 export default function Accesiftpl() {

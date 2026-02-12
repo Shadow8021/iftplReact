@@ -1,4 +1,4 @@
-import img404 from "../../public/Img404.png"
+import img404 from "/Img404.png"
 export default function Error404() {
     return (
         <div className='w-ful m-3 bg-teal-50 shadow-2xl rounded-2xl h-125 p-5'>

@@ -1,75 +1,75 @@
-@import "tailwindcss";
-@plugin "daisyui";
+  @import "tailwindcss";
+  @plugin "daisyui";
 
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-body {
-  font-family: "Roboto", sans-serif;
-  background-color: antiquewhite;
-  width: 100%;
-  max-width: 100%;
-}
+  body {
+    font-family: "Roboto", sans-serif;
+    background-color: antiquewhite;
+    width: 100%;
+    max-width: 100%;
+  }
 
-nav {
-  background-color: #002E6D;
-  box-shadow: 0 2px 8px 1px #110f0fde;
-  width: 100%;
-}
-
-
-li {
-  font-weight: 600;
-  transition: 0.2s ease-in;
-  cursor: pointer;
-  color: white;
-}
-
-li:hover {
-  color: #D00D2D;
-}
-
-.hero {
-  background-image: url("../public/iftpl.jpg");
-  object-fit: cover;
-  background-attachment: center;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 100%;
-}
-
-.heroFilter {
-  background-color: rgba(0, 0, 0, 0.62);
-  color: white;
-}
-
-.icone-prog {
-  width: 80px;
-
-}
-
-.programmes {
-  border-bottom: solid 2px black;
-}
-
-.contenaire {
-  background: linear-gradient(#002E6D, rgba(255, 0, 0, 0.555))
-}
+  nav {
+    background-color: #002E6D;
+    box-shadow: 0 2px 8px 1px #110f0fde;
+    width: 100%;
+  }
 
 
+  li {
+    font-weight: 600;
+    transition: 0.2s ease-in;
+    cursor: pointer;
+    color: white;
+  }
 
-.borde {
-  border: solid 1 blue;
-}
+  li:hover {
+    color: #D00D2D;
+  }
 
-@media(min-width: 1024px) {
   .hero {
-    background-image: url("../public/iftpl.jpg");
+    background-image: url("/iftpl.jpg");
     object-fit: cover;
     background-attachment: center;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 100%;
+    width: 100%;
   }
-}
 
-@media(max-width: 1024px) {}
+  .heroFilter {
+    background-color: rgba(0, 0, 0, 0.62);
+    color: white;
+  }
+
+  .icone-prog {
+    width: 80px;
+
+  }
+
+  .programmes {
+    border-bottom: solid 2px black;
+  }
+
+  .contenaire {
+    background: linear-gradient(#002E6D, rgba(255, 0, 0, 0.555))
+  }
+
+
+
+  .borde {
+    border: solid 1 blue;
+  }
+
+  @media(min-width: 1024px) {
+    .hero {
+      background-image: url("/iftpl.jpg");
+      object-fit: cover;
+      background-attachment: center;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100%;
+    }
+  }
+
+  @media(max-width: 1024px) {}

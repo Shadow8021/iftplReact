@@ -1,4 +1,4 @@
-import logo from "../../public/logo1.svg";
+import logo from "/logo1.svg";
 import { Menu, X } from 'lucide-react';
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
