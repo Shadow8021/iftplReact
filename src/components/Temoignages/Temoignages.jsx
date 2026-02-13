@@ -55,7 +55,7 @@ export default function Temoignages() {
                                                 <h4 className="font-bold text-[#002E6D] text-lg">
                                                     {el.prenom} {el.nom.toUpperCase()}
                                                 </h4>
-                                                <p className="text-sm text-gray-600">{el.nationnalite}</p>
+                                                <p className="text-sm text-left text-gray-600">{el.nationnalite}</p>
                                             </div>
                                         </div>
                                     </div>
