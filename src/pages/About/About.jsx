@@ -1,5 +1,5 @@
 import { CheckCircle, Target, Heart, Users } from 'lucide-react'
-
+import { NavLink } from 'react-router-dom'
 export default function About() {
     const values = [
         {
@@ -204,10 +204,9 @@ export default function About() {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
 
-                        <a href="/formation" className="bg-white text-[#D00D2D] font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors">Consulter nos formations</a>
+                        <NavLink to="/formation" className="bg-white text-[#D00D2D] font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors">Consulter nos formations</NavLink>
 
-
-                        <a href="/contact" className="border-2 border-white text-white font-bold py-3 px-8 rounded-lg hover:bg-white hover:text-[#D00D2D] transition-colors">Nous contacter</a>
+                        <NavLink to="/contact" className="border-2 border-white text-white font-bold py-3 px-8 rounded-lg hover:bg-white hover:text-[#D00D2D] transition-colors">Nous contacter</NavLink>
 
                     </div>
                 </div>
