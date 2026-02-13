@@ -51,7 +51,7 @@ export default function Heros() {
                                 Explorez nos formations
                                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                             </a>
-                            <a href="#videos" className="inline-flex items-center justify-center border-2 border-white text-white hover:bg-white hover:text-[#002E6D] font-bold py-4 px-8 rounded-lg transition-colors duration-300">
+                            <a href="#videos" className="hidden sm:inline-flex items-center justify-center border-2 border-white text-white hover:bg-white hover:text-[#002E6D] font-bold py-4 px-8 rounded-lg transition-colors duration-300">
                                 <Play className="w-5 h-5 mr-2" />
                                 Regarder la vidéo
                             </a>
