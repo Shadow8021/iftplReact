@@ -26,7 +26,7 @@ export default function Heros() {
             </div>
 
             {/* Content */}
-            <div className="relative z-10 max-w-7xl mx-auto px-5 py-20 lg:py-40">
+            <div className="relative z-10 max-w-7xl mx-auto px-5 py-20  lg:py-40">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
                     {/* Left Content */}

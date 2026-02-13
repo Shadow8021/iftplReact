@@ -8,20 +8,20 @@ export default function Formation() {
     return (
         <div>
             {/* debut de la section formations disponibles */}
-            <section className="w-full min-h-screen bg-linear-to-b from-[#f5f5f5] to-[#ffffff] py-16 px-5">
+            <section className="w-full min-h-screen bg-linear-to-b from-[#f5f5f5] to-[#ffffff] py-2 ">
 
                 {/* En-tête */}
-                <div className="max-w-7xl mx-auto mb-12">
-                    <h2 className="text-4xl lg:text-5xl font-bold text-[#002E6D] mb-4 text-center">
-                        Nos <span className="text-[#D00D2D]">Formations</span>
-                    </h2>
-                    <p className="text-center text-gray-600 text-lg max-w-3xl mx-auto">
-                        Découvrez nos programmes de formation professionnelle adaptés à vos objectifs de carrière et conçus pour vous préparer au monde du travail.
-                    </p>
-                </div>
+                <section className="w-full bg-linear-to-r from-[#002E6D] to-[#0553c1] text-white py-16 px-5">
+                    <div className="max-w-7xl mx-auto text-center">
+                        <h1 className="text-5xl lg:text-6xl font-bold mb-6">Nos <span className="text-red-600">Formations</span></h1>
+                        <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+                            Découvrez nos programmes de formation professionnelle adaptés à vos objectifs de carrière et conçus pour vous préparer au monde du travail.
+                        </p>
+                    </div>
+                </section>
 
                 {/* Grille de cartes */}
-                <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-16 px-5">
                     {formations.map((formation) => (
                         <div key={formation.id} className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
 
@@ -93,9 +93,7 @@ export default function Formation() {
                 <div className="mt-16 bg-linear-to-r from-[#002E6D] to-[#0553c1] rounded-2xl p-8 max-w-4xl mx-auto text-center text-white">
                     <h3 className="text-2xl font-bold mb-2">Prêt à commencer ?</h3>
                     <p className="mb-6 text-blue-100">Inscrivez-vous dès maintenant et rejoignez des centaines d'autres étudiants satisfaits</p>
-                    <button className="bg-[#D00D2D] hover:bg-[#ff1a3c] text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300">
-                        S'inscrire maintenant
-                    </button>
+
                 </div>
 
             </section>
