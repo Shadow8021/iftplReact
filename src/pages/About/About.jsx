@@ -37,24 +37,34 @@ export default function About() {
 
     const timeline = [
         {
-            year: "2009",
-            title: "Fondation de l'IFTPL",
-            description: "L'Institut de Formation Technique et Professionnelle de Loudima est créé avec la mission de former les futurs professionnels."
+            year: "2007",
+            title: "Signature de l’accord bilatéral Congo — Namibie pour créer l’Institut",
+            description: "Les Présidents Denis Sassou Nguesso (Congo) et Hifikepunye Pohamba (Namibie) ont signé un accord bilatéral pour créer un institut de formation technique commun à Loudima."
         },
         {
-            year: "2014",
-            title: "Expansion des programmes",
-            description: "Ajout de nouveaux programmes de formation pour répondre aux besoins du marché du travail."
+            year: "2009",
+            title: "Pose de la première pierre des travaux (réhabilitation du site historique)",
+            description: "Les autorités congolaises et namibiennes ont procédé à la pose de la première pierre de l’IFTP de Loudima à Kitaka, marquant le lancement officiel des travaux de construction de l’institut."
+        },
+        {
+            year: "2011",
+            title: "Construction et réhabilitation avancent.",
+            description: "Les travaux de construction et de réhabilitation du site de Kitaka ont commencé pour transformer l’ancien camp historique en un institut moderne."
+        },
+        {
+            year: "22 oct. 2014",
+            title: "Inauguration officielle de l’IFTPL.",
+            description: "L’institut a été officiellement inauguré à Loudima par les Chefs d’État congolais et namibien, marquant l’aboutissement du projet de coopération."
+        },
+        {
+            year: "mars 2015",
+            title: "Début de la première promotion d’étudiants.",
+            description: "La première promotion d’étudiants congolais et namibiens a commencé les cours au sein de l’institut."
         },
         {
             year: "2018",
-            title: "Accréditation nationale",
-            description: "Obtention de l'accréditation officielle du ministère de l'enseignement technique et professionnel."
-        },
-        {
-            year: "2023",
-            title: "Modernisation",
-            description: "Mise à jour des installations et intégration de nouvelles technologies dans nos programmes de formation."
+            title: "Premiers diplômés sortants.",
+            description: "Les premiers étudiants formés à l’institut ont obtenu leurs diplômes techniques et professionnels."
         }
     ]
 
