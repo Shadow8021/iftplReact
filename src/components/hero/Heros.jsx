@@ -37,7 +37,7 @@ export default function Heros() {
                                     Bienvenue à l'IFTPL
                                 </span>
                             </div>
-                            <h1 className="text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                            <h1 className="text-2xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
                                 <span className="text-[#D00D2D]">I.F.T.P.L</span>, le centre de référence où se forment les <span className="text-[#D00D2D]">techniciens et innovateurs</span>, prêts à transformer le monde.
                             </h1>
                             <p className="text-xl text-blue-100 mb-8">
