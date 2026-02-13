@@ -73,7 +73,7 @@ export default function About() {
             {/* Hero Section */}
             <section className="w-full bg-linear-to-r from-[#002E6D] to-[#0553c1] text-white py-20 px-5">
                 <div className="max-w-7xl mx-auto text-center">
-                    <h1 className="text-5xl lg:text-6xl font-bold mb-6 text-red-600">À propos de l'IFTPL</h1>
+                    <h1 className="text-5xl lg:text-6xl font-bold mb-6 ">À propos de <span className='text-red-600'>l'IFTPL</span></h1>
                     <p className="text-xl text-blue-100 max-w-3xl mx-auto">
                         Depuis plus de 15 ans, l'Institut de Formation Technique et Professionnelle de Loudima forme les talents de demain en offrant une éducation de qualité, adaptée aux réalités du marché du travail moderne.
                     </p>
@@ -92,9 +92,7 @@ export default function About() {
                             <p className="text-gray-700 text-lg mb-6">
                                 Nous nous engageons à offrir une formation pratique et théorique de haut niveau, en partenariat avec les entreprises et institutions du secteur professionnel.
                             </p>
-                            <a href="#" className="inline-block bg-[#D00D2D] hover:bg-[#ff1a3c] text-white font-bold py-3 px-8 rounded-lg transition-colors">
-                                En savoir plus
-                            </a>
+
                         </div>
                         <div>
                             <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop" alt="Mission" className="rounded-2xl shadow-2xl w-full" />
@@ -205,12 +203,12 @@ export default function About() {
                         Commencez votre parcours vers une carrière professionnelle réussie avec l'IFTPL.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button className="bg-white text-[#D00D2D] font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors">
-                            <a href="/formation">Consulter nos formations</a>
-                        </button>
-                        <button className="border-2 border-white text-white font-bold py-3 px-8 rounded-lg hover:bg-white hover:text-[#D00D2D] transition-colors">
-                            <a href="/contact">Nous contacter</a>
-                        </button>
+
+                        <a href="/formation" className="bg-white text-[#D00D2D] font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors">Consulter nos formations</a>
+
+
+                        <a href="/contact" className="border-2 border-white text-white font-bold py-3 px-8 rounded-lg hover:bg-white hover:text-[#D00D2D] transition-colors">Nous contacter</a>
+
                     </div>
                 </div>
             </section>

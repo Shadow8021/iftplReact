@@ -92,7 +92,7 @@ export default function Galerie() {
             {/* Hero Section */}
             <section className="w-full bg-linear-to-r from-[#002E6D] to-[#0553c1] text-white py-16 px-5">
                 <div className="max-w-7xl mx-auto text-center">
-                    <h1 className="text-5xl lg:text-6xl font-bold mb-6">Galerie de l'IFTPL</h1>
+                    <h1 className="text-5xl lg:text-6xl font-bold mb-6">Galerie de <span className="text-red-600">l'IFTPL</span></h1>
                     <p className="text-xl text-blue-100 max-w-3xl mx-auto">
                         Découvrez nos installations, nos formations et la vie des étudiants à travers notre galerie photos et vidéos
                     </p>
@@ -136,14 +136,14 @@ export default function Galerie() {
                                         className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300"
                                     />
                                     {/* Overlay */}
-                                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
+                                    <div className="absolute inset-0 hover:bg-[#100b0c8f] bg-opacity-4 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
                                         <div className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center">
                                             <p className="text-lg font-bold">{img.title}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="p-4 bg-white">
-                                    <span className="inline-block text-xs font-bold text-[#D00D2D] bg-red-50 px-3 py-1 rounded-full mb-2">
+                                    <span className="inline-block text-xs font-bold text-[#130e0f] bg-red-50 px-3 py-1 rounded-full mb-2">
                                         {img.category}
                                     </span>
                                     <h3 className="font-bold text-[#002E6D] mb-1">{img.title}</h3>
@@ -201,9 +201,9 @@ export default function Galerie() {
                         {/* Close Button */}
                         <button
                             onClick={closeCarousel}
-                            className="absolute -top-12 right-0 text-white hover:text-[#D00D2D] transition-colors"
+                            className="absolute -top-1 right-0 border-3 border-[#D00D2D] bg-none text-white hover:text-white hover:bg-[#D00D2D] rounded-full transition-colors"
                         >
-                            <X className="w-8 h-8" />
+                            <X className="w-8 rounded- h-8" />
                         </button>
                     </div>
                 </div>
