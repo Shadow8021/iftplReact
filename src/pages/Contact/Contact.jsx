@@ -217,19 +217,6 @@ export default function Contact() {
                     </div>
                 </div>
             </section>
-
-            {/* CTA Section */}
-            <section className="w-full py-16 px-5 bg-linear-to-r from-[#D00D2D] to-[#ff1a3c] text-white">
-                <div className="max-w-4xl mx-auto text-center">
-                    <h2 className="text-3xl font-bold mb-4">Avez vous d'autres questions ?</h2>
-                    <p className="text-lg text-red-100 mb-8">
-                        Notre équipe administrative est disponible pour répondre à toutes vos questions sur nos formations.
-                    </p>
-                    <a href="#form" className="inline-block bg-white text-[#D00D2D] font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors">
-                        Nous contacter
-                    </a>
-                </div>
-            </section>
         </div>
     )
 }
