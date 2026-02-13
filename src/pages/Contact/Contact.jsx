@@ -78,7 +78,7 @@ export default function Contact() {
                                 className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-l-4 border-[#D00D2D]"
                             >
                                 <div className="flex items-center gap-4 mb-4">
-                                    <div className="p-3 bg-red-50 rounded-xl group-hover:bg-[#D00D2D] group-hover:scale-110 transition-all">
+                                    <div className="p-3 bg-red-50 rounded-xl group-hover:bg-[#d00d2d5a] group-hover:scale-110 transition-all">
                                         {info.icon}
                                     </div>
                                     <h3 className="text-xl font-bold text-[#002E6D]">{info.titre}</h3>
