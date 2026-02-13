@@ -1,69 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { formationsData } from '../../data/formationsData'
 
 export default function Formation() {
-    const formations = [
-        {
-            id: 1,
-            titre: "Maintenance des Équipements Industriels",
-            description: "Apprenez à diagnostiquer, réparer et maintenir les équipements industriels pour une production fiable et efficace.",
-            image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&h=300&fit=crop",
-            duree: "3 ans",
-            modules: 12,
-            niveau: "Intermédiaire",
-            categorie: "Industrie"
-        },
-        {
-            id: 2,
-            titre: "Bâtiment et Travaux Publics (BTP)",
-            description: "Maîtrisez les techniques de construction, la gestion de projets et la sécurité sur les chantiers.",
-            image: "https://images.unsplash.com/photo-1504917595217-343ec35474b7?w=500&h=300&fit=crop",
-            duree: "3 ans",
-            modules: 15,
-            niveau: "Avancé",
-            categorie: "Construction"
-        },
-        {
-            id: 3,
-            titre: "Commercialisation des Services en Restauration (CSR)",
-            description: "Développez vos compétences en gestion, marketing et service client dans le secteur de la restauration.",
-            image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&h=300&fit=crop",
-            duree: "3 an",
-            modules: 8,
-            niveau: "Débutant",
-            categorie: "Restauration"
-        },
-        {
-            id: 4,
-            titre: "Commercialisation des Services en Restauration (CSR)",
-            description: "Développez vos compétences en gestion, marketing et service client dans le secteur de la restauration.",
-            image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&h=300&fit=crop",
-            duree: "3 an",
-            modules: 8,
-            niveau: "Débutant",
-            categorie: "Restauration"
-        },
-        {
-            id: 5,
-            titre: "Commercialisation des Services en Restauration (CSR)",
-            description: "Développez vos compétences en gestion, marketing et service client dans le secteur de la restauration.",
-            image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&h=300&fit=crop",
-            duree: "3 an",
-            modules: 8,
-            niveau: "Débutant",
-            categorie: "Restauration"
-        },
-        {
-            id: 6,
-            titre: "Commercialisation des Services en Restauration (CSR)",
-            description: "Développez vos compétences en gestion, marketing et service client dans le secteur de la restauration.",
-            image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&h=300&fit=crop",
-            duree: "3 an",
-            modules: 8,
-            niveau: "Débutant",
-            categorie: "Restauration"
-        }
-    ]
+    const formations = formationsData
 
     return (
         <div>
@@ -120,11 +60,19 @@ export default function Formation() {
                                         <p className="text-lg font-bold text-[#D00D2D]">{formation.duree}</p>
                                     </div>
                                     <div className="flex-1">
-                                        <p className="text-xs text-gray-500 uppercase tracking-wide">Modules</p>
-                                        <p className="text-lg font-bold text-[#002E6D]">{formation.modules}</p>
+                                        <p className="text-xs text-gray-500 uppercase tracking-wide">Accès</p>
+                                        <p className="text-lg font-bold text-[#002E6D]">{formation.niveauAcces || 'BEPC'}</p>
+                                    </div>
+                                    <div className="flex-1">
+                                        <p className="text-xs text-gray-500 uppercase tracking-wide">Classes</p>
+                                        <p className="text-lg font-bold text-[#002E6D]">{formation.classes ? formation.classes.length + " ans" : '3 ans'}</p>
                                     </div>
 
                                 </div>
+
+                                {formation.stage && (
+                                    <p className="text-sm text-[#D00D2D] font-semibold mb-4">{formation.stage}</p>
+                                )}
 
                                 {/* Bouton */}
                                 <Link
@@ -138,6 +86,8 @@ export default function Formation() {
                         </div>
                     ))}
                 </div>
+
+                {/* Les filières supplémentaires (A.C., E.E.) ont été ajoutées ci-dessus */}
 
                 {/* CTA Section */}
                 <div className="mt-16 bg-linear-to-r from-[#002E6D] to-[#0553c1] rounded-2xl p-8 max-w-4xl mx-auto text-center text-white">

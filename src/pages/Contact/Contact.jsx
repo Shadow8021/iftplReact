@@ -99,20 +99,20 @@ export default function Contact() {
                             <h2 className="text-3xl font-bold text-white mb-8">Envoyez-nous un Message</h2>
                             <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                                 <div>
-                                    <label className="block text-sm font-semibold text-white mb-2">Nom complet</label>
+                                    <label className="block text-sm font-semibold text-left text-white mb-2">Nom complet</label>
                                     <input
                                         type="text"
                                         name="nom"
                                         value={formData.nom}
                                         onChange={handleChange}
                                         placeholder="Votre nom"
-                                        className="w-full p-4 rounded-lg bg-white text-black border-2 border-[#D00D2D] focus:border-[#ff1a3c] focus:ring-2 focus:ring-[#D00D2D] focus:ring-opacity-50 outline-none transition-all"
+                                        className="w-full p-4 rounded-lg bg-white  text-black border-2 border-[#D00D2D] focus:border-[#ff1a3c] focus:ring-2 focus:ring-[#D00D2D] focus:ring-opacity-50 outline-none transition-all"
                                         required
                                     />
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm font-semibold text-white mb-2">Adresse e-mail</label>
+                                    <label className="block text-sm text-left font-semibold  text-white mb-2">Adresse e-mail</label>
                                     <input
                                         type="email"
                                         name="email"
@@ -125,27 +125,27 @@ export default function Contact() {
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm font-semibold text-white mb-2">Sujet</label>
+                                    <label className="block text-sm font-semibold text-left text-white mb-2">Sujet</label>
                                     <input
                                         type="text"
                                         name="sujet"
                                         value={formData.sujet}
                                         onChange={handleChange}
                                         placeholder="Sujet de votre message"
-                                        className="w-full p-4 rounded-lg bg-white text-black border-2 border-[#D00D2D] focus:border-[#ff1a3c] focus:ring-2 focus:ring-[#D00D2D] focus:ring-opacity-50 outline-none transition-all"
+                                        className="w-full p-4 rounded-lg bg-white text-left text-black border-2 border-[#D00D2D] focus:border-[#ff1a3c] focus:ring-2 focus:ring-[#D00D2D] focus:ring-opacity-50 outline-none transition-all"
                                         required
                                     />
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm font-semibold text-white mb-2">Message</label>
+                                    <label className="block text-sm font-semibold text-left text-white mb-2">Message</label>
                                     <textarea
                                         name="message"
                                         value={formData.message}
                                         onChange={handleChange}
                                         placeholder="Votre message..."
                                         rows="6"
-                                        className="w-full p-4 rounded-lg bg-white text-black border-2 border-[#D00D2D] focus:border-[#ff1a3c] focus:ring-2 focus:ring-[#D00D2D] focus:ring-opacity-50 outline-none resize-none transition-all"
+                                        className="w-full p-4 rounded-lg bg-white text-left text-black border-2 border-[#D00D2D] focus:border-[#ff1a3c] focus:ring-2 focus:ring-[#D00D2D] focus:ring-opacity-50 outline-none resize-none transition-all"
                                         required
                                     ></textarea>
                                 </div>
