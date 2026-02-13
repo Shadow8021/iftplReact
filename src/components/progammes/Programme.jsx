@@ -15,7 +15,7 @@ export default function Programme() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
                     {donnees.map((el, i) => {
-                        return <Filiere key={i} titre={el.titre} logo={el.logo} />
+                        return <Filiere key={i} lien={el.lien} titre={el.titre} logo={el.logo} />
                     })}
                 </div>
 
