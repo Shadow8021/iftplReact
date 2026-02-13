@@ -13,7 +13,7 @@ export default function Programme() {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <div className="flex flex-wrap gap-8 justify-evenly mb-12">
                     {donnees.map((el, i) => {
                         return <Filiere key={i} lien={el.lien} titre={el.titre} logo={el.logo} />
                     })}
