@@ -19,7 +19,7 @@ export const donnees = [
         id: 3,
         Icon: MapPin,
         nom: "Localisation",
-        text1: "Kitaka, Loudima, Republic of the Congo",
+        text1: "Loudima, Republique du Congo",
         text2: "retrouvez-nous à Kitaka",
     },
 ];

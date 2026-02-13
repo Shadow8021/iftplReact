@@ -3,7 +3,7 @@ import { Contacts } from "../contacts/Contacts";
 import { formationsData } from "../../data/formationsData";
 
 export default function Footer() {
-    const formations = formationsData.slice(0, 4); // Affiche les 4 premières formations
+    const formations = formationsData.slice(0, 3); // Affiche les 4 premières formations
 
     return (
         <div>
@@ -16,15 +16,16 @@ export default function Footer() {
                         <div className="lg:text-left min-w-full px-4 rounded-2xl border border-blue-600 font-bold text-sm py-1 lg:min-w-70">
                             <p className="text-2xl font-bold text-[#D00D2D] mb-2">Formations</p>
                             <ul className="text-[10px] flex flex-col gap-1 lg:text-[15px] lg:gap-0 ">
-                                {formations.map((formation) => (
-                                    <li key={formation.id} className="py-1 text-[#D00D2D] hover:text-white transition-colors">
-                                        <Link to={`/formation-detail/${formation.id}`} state={{ formation }}>
-                                            {formation.titre}
-                                        </Link>
-                                    </li>
-                                ))}
+                                {formations.map((formation) => {
+                                    return (
+                                        <li key={formation.id} className="py-1 text-[#D00D2D] hover:text-white transition-colors">
+                                            <Link to={`/formation-detail/${formation.id}`} state={{ formation }}>
+                                                {formation.titre}
+                                            </Link>
+                                        </li>)
+                                })}
                                 <li className="py-1 text-[#D00D2D] hover:text-white transition-colors">
-                                    <Link to="/formation">Voir toutes les formations...</Link>
+
                                 </li>
                             </ul>
                         </div>
