@@ -11,6 +11,7 @@ import MainLayout from './pages/layouts/MainLayout';
 import Formation from './pages/Formation/Formation';
 import FormationDetail from './pages/FormationDetail/FormationDetail';
 import Loading from './utils/Loading';
+import ScrollToTop from './utils/ScrollToTop';
 function AppContent() {
   const location = useLocation()
   const [isLoading, setIsLoading] = useState(false)
@@ -26,6 +27,7 @@ function AppContent() {
 
   return (
     <>
+      <ScrollToTop />
       {isLoading && <Loading />}
       <Routes>
         <Route element={<MainLayout />}>
