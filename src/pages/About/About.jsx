@@ -206,10 +206,10 @@ export default function About() {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <button className="bg-white text-[#D00D2D] font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors">
-                            Consulter nos formations
+                            <a href="/formation">Consulter nos formations</a>
                         </button>
                         <button className="border-2 border-white text-white font-bold py-3 px-8 rounded-lg hover:bg-white hover:text-[#D00D2D] transition-colors">
-                            Nous contacter
+                            <a href="/contact">Nous contacter</a>
                         </button>
                     </div>
                 </div>
