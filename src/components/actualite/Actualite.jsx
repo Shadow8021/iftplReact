@@ -1,7 +1,7 @@
 
 export default function Actualite() {
     return (
-        <div className='flex flex-col justify-center items-center w-full h-auto bg-red-300 py-10'>
+        <div className='hidden flex-col justify-center items-center w-full h-auto bg-red-300 py-10'>
             <h1 className="mx-auto text-4xl font-bold text-red-700">Actualités</h1>
             <div className="md:flex gap-5 mt-5 justify-center">
                 <div className="w-1/3 bg-gray-200 p-5">

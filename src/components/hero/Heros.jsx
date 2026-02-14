@@ -90,7 +90,7 @@ export default function Heros() {
 
             {/* Scroll Indicator */}
             <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-                <div className="flex flex-col items-center">
+                <div className="hidden md:flex flex-col items-center">
                     <p className="text-sm text-blue-100 mb-2">Découvrez plus</p>
                     <div className="w-6 h-10 border-2 border-white rounded-full flex items-start justify-center p-2">
                         <div className="w-1 h-3 bg-white rounded-full animate-ping"></div>
