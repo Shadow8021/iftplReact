@@ -8,7 +8,7 @@ export default function Formation() {
     return (
         <div>
             {/* debut de la section formations disponibles */}
-            <section className="w-full min-h-screen bg-linear-to-b from-[#f5f5f5] to-[#ffffff] py-2 ">
+            <section className="w-full min-h-screen bg-linear-to-b from-[#f5f5f5] to-[#ffffff] ">
 
                 {/* En-tête */}
                 <section className="w-full bg-linear-to-r from-[#002E6D] to-[#0553c1] text-white py-16 px-5">
