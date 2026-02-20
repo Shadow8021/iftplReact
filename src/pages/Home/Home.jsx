@@ -1,4 +1,4 @@
-
+import Actualite from '../../components/actualite/Actualite'
 import Heros from '../../components/hero/Heros'
 import Programme from '../../components/progammes/Programme'
 import Accesiftpl from '../../components/accesiftpl/Accesiftpl'
@@ -8,6 +8,7 @@ import Statistique from '../../components/statistique/Statistique'
 import Partenaires from '../../components/partenaire/Partenaires'
 import Temoignages from '../../components/Temoignages/Temoignages'
 export default function Home() {
+    let age = 18
     return (
         <div>
             <Heros />
@@ -15,6 +16,7 @@ export default function Home() {
             <Accesiftpl />
             <Information />
             <ProjectForm />
+            {age ? <Actualite /> : null}
             <Statistique />
             <Partenaires />
             <Temoignages />
