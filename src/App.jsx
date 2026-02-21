@@ -12,6 +12,8 @@ import Formation from './pages/Formation/Formation';
 import FormationDetail from './pages/FormationDetail/FormationDetail';
 import Loading from './utils/Loading';
 import ScrollToTop from './utils/ScrollToTop';
+import Dasboard from './admin/Dasboard';
+
 function AppContent() {
   const location = useLocation()
   const [isLoading, setIsLoading] = useState(false)
@@ -32,6 +34,7 @@ function AppContent() {
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/admin" element={<Dasboard />} />
           <Route path="/Home" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
