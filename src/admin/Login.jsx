@@ -28,6 +28,11 @@ export default function Login() {
         setTimeout(() => {
             if (formData.email && formData.password) {
                 // En production : vérifier identifiants, stocker token, etc.
+                let user = {
+                    email: formData.email,
+                    password: formData.password
+                }
+                localStorage.setItem('user', JSON.stringify(user))
                 navigate('/admin')
             } else {
                 setError('Veuillez remplir tous les champs.')
