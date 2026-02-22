@@ -44,7 +44,7 @@ function AppContent() {
           <Route path="/formation" element={<Formation />} />
           <Route path="/formation-detail/:id" element={<FormationDetail />} />
         </Route>
-        <Route element={<Dasboard />} >
+        <Route element={<AdminLayout />} >
           <Route path="/admin" element={<Dasboard />} />
           <Route path="/admin/login" element={<Login />} />
         </Route>
