@@ -11,28 +11,34 @@ import MainLayout from './pages/layouts/MainLayout';
 import AdminLayout from './admin/layout/AdminLayout'
 import Formation from './pages/Formation/Formation';
 import FormationDetail from './pages/FormationDetail/FormationDetail';
+import ActualiteDetail from './pages/ActualiteDetail/ActualiteDetail';
 import Loading from './utils/Loading';
 import ScrollToTop from './utils/ScrollToTop';
 import Dasboard from './admin/Dasboard';
-import Login from './admin/Login'
+import Login from './admin/Login';
+import GalerieAdmin from './admin/pages/GalerieAdmin';
+import ActualitesAdmin from './admin/pages/ActualitesAdmin';
+import FormationsAdmin from './admin/pages/FormationsAdmin';
 
 function AppContent() {
   const location = useLocation()
   const [isLoading, setIsLoading] = useState(false)
+  const isAdminRoute = location.pathname.startsWith('/admin')
 
   useEffect(() => {
+    if (isAdminRoute) return
     setIsLoading(true)
     const timer = setTimeout(() => {
       setIsLoading(false)
     }, 800)
 
     return () => clearTimeout(timer)
-  }, [location])
+  }, [location, isAdminRoute])
 
   return (
     <>
       <ScrollToTop />
-      {isLoading && <Loading />}
+      {!isAdminRoute && isLoading && <Loading />}
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
@@ -41,12 +47,16 @@ function AppContent() {
           <Route path="/about" element={<About />} />
           <Route path="/galerie" element={<Galerie />} />
           <Route path="/actualite" element={<Actualite />} />
+          <Route path="/actualite/:id" element={<ActualiteDetail />} />
           <Route path="/formation" element={<Formation />} />
           <Route path="/formation-detail/:id" element={<FormationDetail />} />
         </Route>
-        <Route element={<AdminLayout />} >
-          <Route path="/admin" element={<Dasboard />} />
-          <Route path="/admin/login" element={<Login />} />
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Dasboard />} />
+          <Route path="login" element={<Login />} />
+          <Route path="galerie" element={<GalerieAdmin />} />
+          <Route path="actualites" element={<ActualitesAdmin />} />
+          <Route path="formations" element={<FormationsAdmin />} />
         </Route>
         <Route path="*" element={<Error404 />} />
       </Routes>

@@ -42,7 +42,7 @@ export default function Login() {
     }
 
     return (
-        <section className="min-h-[calc(100vh-8rem)] h-screen w-full bg-[#002E6D] bg-gradient-to-br from-[#002E6D] to-[#0553c1] text-white py-16 px-5 flex items-center justify-center">
+        <section className="min-h-[calc(100vh-8rem)] h-screen w-full bg-[#002E6D] bg-linear-to-br from-[#002E6D] to-[#0553c1] text-white py-16 px-5 flex items-center justify-center">
             <div className="w-full max-w-md">
                 <div className="bg-[#011f4b] p-8 rounded-2xl shadow-2xl border border-[#D00D2D]/30">
                     <h1 className="text-3xl font-bold text-center mb-2">

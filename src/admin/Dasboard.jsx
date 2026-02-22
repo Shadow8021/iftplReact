@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { formationsData } from '../data/formationsData'
+import { getFormations } from '../utils/storeFormations'
 import { donnees } from '../components/statistique/stats'
 import {
   BookOpen,
@@ -12,29 +12,49 @@ import {
   FileText,
   Mail,
   ExternalLink,
-  LayoutDashboard,
+  ArrowUpRight,
 } from 'lucide-react'
 
-export default function Dasboard() {
+export default function Dashboard() {
   const navigate = useNavigate()
-  const userJson = localStorage.getItem('user')
-  const user = userJson ? JSON.parse(userJson) : null
+  const [user, setUser] = useState(null)
+
+  /* ================= AUTH ================= */
 
   useEffect(() => {
-    if (!user) {
-      navigate('/admin/login')
+    try {
+      const stored = JSON.parse(localStorage.getItem('user') || 'null')
+      if (!stored) {
+        navigate('/admin/login', { replace: true })
+      } else {
+        setUser(stored)
+      }
+    } catch {
+      navigate('/admin/login', { replace: true })
     }
-  }, [user, navigate])
+  }, [navigate])
 
-  if (!user) return null
+  /* ================= DATA ================= */
 
-  const statsDisplay = [
-    { id: 1, nbr: formationsData.length, texte: 'Formations', icon: BookOpen, color: 'bg-[#002E6D]' },
-    { id: 2, nbr: donnees.find(d => d.texte === 'étudiants')?.nbr || '+200', texte: 'Étudiants', icon: Users, color: 'bg-[#0553c1]' },
-    { id: 3, nbr: donnees.find(d => d.texte === 'lauréats')?.nbr || '+500', texte: 'Lauréats', icon: Award, color: 'bg-[#D00D2D]' },
-    { id: 4, nbr: '30', texte: 'Personnel admin', icon: Building2, color: 'bg-[#002E6D]' },
-    { id: 5, nbr: '+51', texte: 'Enseignants', icon: GraduationCap, color: 'bg-[#0553c1]' },
-  ]
+  const formations = useMemo(() => getFormations(), [])
+
+  const statsMap = useMemo(() => {
+    return donnees.reduce((acc, item) => {
+      acc[item.texte] = item.nbr
+      return acc
+    }, {})
+  }, [])
+
+  const statsDisplay = useMemo(
+    () => [
+      { id: 1, nbr: formations.length, texte: 'Formations', icon: BookOpen },
+      { id: 2, nbr: statsMap['étudiants'] || '+200', texte: 'Étudiants', icon: Users },
+      { id: 3, nbr: statsMap['lauréats'] || '+500', texte: 'Lauréats', icon: Award },
+      { id: 4, nbr: '30', texte: 'Personnel admin', icon: Building2 },
+      { id: 5, nbr: '+51', texte: 'Enseignants', icon: GraduationCap },
+    ],
+    [formations.length, statsMap]
+  )
 
   const quickLinks = [
     { label: 'Formations', path: '/formation', icon: BookOpen },
@@ -43,130 +63,157 @@ export default function Dasboard() {
     { label: 'Contact', path: '/contact', icon: Mail },
   ]
 
+  if (!user) return null
+
+  const username = user.email?.split('@')[0] || 'Admin'
+
+  /* ================= UI ================= */
+
   return (
-    <section className="min-h-screen w-full bg-gradient-to-br from-[#f0f4f8] to-[#e2e8f0] text-[#002E6D]">
-      {/* En-tête */}
-      <div className="w-full bg-gradient-to-r from-[#002E6D] via-[#005ba3] to-[#0070d4] text-white shadow-lg">
-        <div className="max-w-7xl mx-auto px-5 py-8">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="p-3 bg-[#D00D2D] rounded-xl">
-                <LayoutDashboard className="w-8 h-8" />
-              </div>
-              <div>
-                <h1 className="text-2xl lg:text-3xl font-bold">Tableau de bord IFTPL</h1>
-                <p className="text-blue-200 text-sm">Bienvenue, {user.email}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className="p-8 space-y-10">
 
-      <div className="max-w-7xl mx-auto px-5 py-8 space-y-8">
-        {/* Cartes statistiques */}
-        <div>
-          <h2 className="text-xl font-bold text-[#002E6D] mb-4">Vue d'ensemble</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            {statsDisplay.map((stat) => {
-              const Icon = stat.icon
-              return (
-                <div
-                  key={stat.id}
-                  className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-shadow"
-                >
-                  <div className={`inline-flex p-3 rounded-xl ${stat.color} text-white mb-4`}>
-                    <Icon className="w-6 h-6" />
-                  </div>
-                  <p className="text-3xl font-bold text-[#002E6D]">{stat.nbr}</p>
-                  <p className="text-gray-600 font-medium">{stat.texte}</p>
+      {/* HEADER */}
+      <header>
+        <p className="text-sm text-[#0553c1]">Tableau de bord</p>
+        <h1 className="mt-1 text-2xl font-semibold tracking-tight text-[#002E6D]">
+          Bonjour, {username}
+        </h1>
+      </header>
+
+      {/* STATS */}
+      <section>
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+          {statsDisplay.map(({ id, nbr, texte, icon: Icon }, i) => {
+            const colors = [
+              'bg-[#002E6D]',
+              'bg-[#0553c1]',
+              'bg-[#D00D2D]',
+            ]
+            const iconBg = colors[i % colors.length]
+
+            return (
+              <div
+                key={id}
+                className="rounded-xl border border-[#002E6D]/10 bg-white p-5 shadow-sm transition-all hover:shadow-md hover:-translate-y-1"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-2xl font-semibold tabular-nums text-[#002E6D]">
+                    {nbr}
+                  </span>
+                  <span className={`rounded-lg ${iconBg} p-2 text-white`}>
+                    <Icon className="h-5 w-5" />
+                  </span>
                 </div>
-              )
-            })}
-          </div>
+                <p className="mt-1 text-sm text-[#0553c1]/90">{texte}</p>
+              </div>
+            )
+          })}
         </div>
+      </section>
 
-        {/* Accès rapide au site */}
-        <div>
-          <h2 className="text-xl font-bold text-[#002E6D] mb-4">Accès rapide au site</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {quickLinks.map((link) => {
-              const Icon = link.icon
-              return (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-5 bg-white rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl hover:border-[#D00D2D]/30 transition-all group"
-                >
-                  <div className="p-3 bg-[#002E6D]/10 rounded-xl group-hover:bg-[#D00D2D]/20 transition-colors">
-                    <Icon className="w-6 h-6 text-[#002E6D] group-hover:text-[#D00D2D]" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="font-bold text-[#002E6D] group-hover:text-[#D00D2D]">{link.label}</p>
-                    <p className="text-sm text-gray-500">Voir la page</p>
-                  </div>
-                  <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-[#D00D2D]" />
-                </Link>
-              )
-            })}
-          </div>
+      {/* QUICK LINKS */}
+      <section>
+        <h2 className="mb-4 text-sm font-medium uppercase tracking-wider text-[#0553c1]">
+          Accès rapide au site
+        </h2>
+
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {quickLinks.map(({ label, path, icon: Icon }) => (
+            <Link
+              key={path}
+              to={path}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-4 rounded-xl border border-[#002E6D]/10 bg-white p-4 shadow-sm transition-all hover:border-[#D00D2D]/30 hover:shadow-md"
+            >
+              <span className="rounded-lg bg-[#002E6D]/10 p-2.5 text-[#002E6D] group-hover:bg-[#D00D2D]/20 group-hover:text-[#D00D2D]">
+                <Icon className="h-5 w-5" />
+              </span>
+
+              <div className="flex-1 min-w-0">
+                <p className="font-medium text-[#002E6D] group-hover:text-[#D00D2D]">
+                  {label}
+                </p>
+                <p className="text-xs text-[#0553c1]/80">Ouvrir la page</p>
+              </div>
+
+              <ArrowUpRight className="h-4 w-4 shrink-0 text-[#0553c1]/70 group-hover:text-[#D00D2D]" />
+            </Link>
+          ))}
         </div>
+      </section>
 
-        {/* Liste des formations */}
-        <div>
-          <h2 className="text-xl font-bold text-[#002E6D] mb-4">Formations proposées</h2>
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="bg-[#002E6D] text-white">
-                    <th className="text-left py-4 px-5 font-semibold">Formation</th>
-                    <th className="text-left py-4 px-5 font-semibold">Catégorie</th>
-                    <th className="text-left py-4 px-5 font-semibold">Durée</th>
-                    <th className="text-left py-4 px-5 font-semibold">Places</th>
-                    <th className="text-center py-4 px-5 font-semibold">Lien</th>
+      {/* FORMATIONS TABLE */}
+      <section>
+        <h2 className="mb-4 text-sm font-medium uppercase tracking-wider text-[#0553c1]">
+          Formations proposées
+        </h2>
+
+        <div className="overflow-hidden rounded-xl border border-[#002E6D]/10 bg-white shadow-sm">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-[#002E6D]/20 bg-[#002E6D]">
+                  <th className="px-5 py-3.5 text-left font-medium text-white">Formation</th>
+                  <th className="px-5 py-3.5 text-left font-medium text-white">Catégorie</th>
+                  <th className="px-5 py-3.5 text-left font-medium text-white">Durée</th>
+                  <th className="px-5 py-3.5 text-left font-medium text-white">Places</th>
+                  <th className="px-5 py-3.5 text-right font-medium text-white"></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {formations.length === 0 ? (
+                  <tr>
+                    <td
+                      colSpan="5"
+                      className="px-5 py-6 text-center text-[#0553c1]/70"
+                    >
+                      Aucune formation disponible.
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {formationsData.map((f) => (
+                ) : (
+                  formations.map((f) => (
                     <tr
                       key={f.id}
-                      className="border-b border-gray-100 hover:bg-[#f8fafc] transition-colors"
+                      className="border-b border-gray-100 last:border-0 hover:bg-[#f8fafc] transition-colors"
                     >
-                      <td className="py-4 px-5 font-medium text-[#002E6D]">{f.titre}</td>
-                      <td className="py-4 px-5">
-                        <span className="bg-[#D00D2D]/10 text-[#D00D2D] px-3 py-1 rounded-full text-sm font-semibold">
+                      <td className="px-5 py-3.5 font-medium text-[#002E6D]">
+                        {f.titre}
+                      </td>
+
+                      <td className="px-5 py-3.5">
+                        <span className="inline-flex rounded-full bg-[#D00D2D]/10 px-2.5 py-0.5 text-xs font-medium text-[#D00D2D]">
                           {f.categorie}
                         </span>
                       </td>
-                      <td className="py-4 px-5 text-gray-600">{f.duree}</td>
-                      <td className="py-4 px-5 text-gray-600">{f.place}</td>
-                      <td className="py-4 px-5 text-center">
+
+                      <td className="px-5 py-3.5 text-[#0553c1]/90">
+                        {f.duree}
+                      </td>
+
+                      <td className="px-5 py-3.5 text-[#0553c1]/90">
+                        {f.place}
+                      </td>
+
+                      <td className="px-5 py-3.5 text-right">
                         <Link
                           to={`/formation-detail/${f.id}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-[#0553c1] hover:text-[#D00D2D] font-semibold text-sm"
+                          className="inline-flex items-center gap-1 font-medium text-[#0553c1] hover:text-[#D00D2D]"
                         >
-                          Voir <ExternalLink className="w-4 h-4" />
+                          Voir <ExternalLink className="h-3.5 w-3.5" />
                         </Link>
                       </td>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  ))
+                )}
+              </tbody>
+            </table>
           </div>
         </div>
-
-        {/* Pied de page du dashboard */}
-        <div className="bg-gradient-to-r from-[#002E6D] to-[#0553c1] rounded-2xl p-6 text-white text-center">
-          <p className="text-blue-100">
-            Ce tableau de bord reflète les données du site IFTPL. Pour modifier les contenus, connectez-vous à votre backend ou éditez les fichiers de données.
-          </p>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
   )
 }

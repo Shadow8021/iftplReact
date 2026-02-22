@@ -21,6 +21,9 @@ export default function Navbar() {
         }, {
             nom: "Contact",
             path: "/contact"
+        }, {
+            nom: "ADMIN",
+            path: "/admin"
         }
     ]
     const [open, setOpen] = useState(false);
@@ -43,11 +46,7 @@ export default function Navbar() {
                     </ul>
 
                     {/* Burger */}
-                    <button
-                        onClick={() => setOpen(!open)}
-                        className="md:hidden"
-                        aria-label="menu"
-                    >
+                    <button onClick={() => setOpen(!open)} className="md:hidden" aria-label="menu">
                         {open ? <X size={40} className="lg:hidden sm:hidden transition ease-in-out" color="white" strokeWidth={2.25} />
                             : <Menu size={40} className="lg:hidden sm:hidden transition ease-in-out" color="white" strokeWidth={2.25} />}
                     </button>

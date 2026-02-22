@@ -1,22 +1,31 @@
 import React, { useState } from 'react';
 import { CheckCircle, Clock, Users, Award, BookOpen, Briefcase, ArrowRight, GraduationCap } from 'lucide-react';
-import { useLocation, useParams } from 'react-router-dom';
-import { formationsData } from '../../data/formationsData';
+import { useLocation, useParams, Link } from 'react-router-dom';
+import { getFormationById, getFormations } from '../../utils/storeFormations';
 
 export default function FormationDetail() {
     const [activeTab, setActiveTab] = useState('overview');
     const location = useLocation();
     const { id } = useParams();
 
-    // Récupérer la formation depuis state ou ID
     let formation = location.state?.formation;
     if (!formation && id) {
-        formation = formationsData.find(f => f.id === parseInt(id));
+        formation = getFormationById(id);
+    }
+    if (!formation) {
+        const all = getFormations();
+        formation = all[0];
     }
 
-    // Fallback si aucune formation trouvée
     if (!formation) {
-        formation = formationsData[0];
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="text-center">
+                    <p className="text-gray-600 mb-4">Formation introuvable.</p>
+                    <Link to="/formation" className="text-[#0553c1] hover:text-[#D00D2D] font-semibold">Retour aux formations</Link>
+                </div>
+            </div>
+        );
     }
 
 
@@ -25,7 +34,7 @@ export default function FormationDetail() {
             {/* Hero Section */}
             <section className="w-full h-96 relative overflow-hidden">
                 <img
-                    src={formation.image}
+                    src={formation.image || 'https://via.placeholder.com/1200x400?text=Formation'}
                     alt={formation.titre}
                     className="w-full h-full object-cover"
                 />

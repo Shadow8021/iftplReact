@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { formationsData } from '../../data/formationsData'
+import { getFormations } from '../../utils/storeFormations'
 
 export default function Formation() {
-    const formations = formationsData
+    const [formations, setFormations] = useState([])
+
+    useEffect(() => {
+        setFormations(getFormations())
+    }, [])
 
     return (
         <div>
@@ -22,13 +26,15 @@ export default function Formation() {
 
                 {/* Grille de cartes */}
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-16 px-5">
-                    {formations.map((formation) => (
+                    {formations.length === 0 ? (
+                        <p className="col-span-full text-center text-gray-500 py-12">Aucune formation pour le moment.</p>
+                    ) : formations.map((formation) => (
                         <div key={formation.id} className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
 
                             {/* Image conteneur */}
                             <div className="relative h-48 overflow-hidden bg-gray-200">
                                 <img
-                                    src={formation.image}
+                                    src={formation.image || 'https://via.placeholder.com/500x300?text=Formation'}
                                     alt={formation.titre}
                                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                                 />
