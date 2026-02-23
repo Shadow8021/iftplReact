@@ -13,6 +13,11 @@ app.get("/", (req, res) => {
     res.send("Bonjour depuis le backend");
 });
 
+app.get("/formations", (req, res) => {
+    res.send("voici la liste des formations");
+});
+
+
 app.listen(PORT, () => {
     console.log(`Le serveur backend tourne sur le port ${PORT}`);
 });
