@@ -1,12 +1,30 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { getFormations } from '../../utils/storeFormations'
+import * as API from '../../utils/apiClient'
 
 export default function Formation() {
     const [formations, setFormations] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
 
     useEffect(() => {
-        setFormations(getFormations())
+        async function loadFormations() {
+            try {
+                setLoading(true)
+                const data = await API.fetchFormations()
+                setFormations(data)
+                setError(null)
+            } catch (err) {
+                console.error('Erreur chargement formations:', err)
+                // Fallback au localStorage si l'API échoue
+                setFormations(getFormations())
+                setError(null)
+            } finally {
+                setLoading(false)
+            }
+        }
+        loadFormations()
     }, [])
 
     return (

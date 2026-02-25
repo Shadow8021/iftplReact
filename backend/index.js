@@ -9,12 +9,14 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+// Routes API
+const galerieRouter = require('./routers/galerie.router')
+const formationsRouter = require('./routers/formations.router')
+app.use('/api/galerie', galerieRouter)
+app.use('/api/formations', formationsRouter)
+
 app.get("/", (req, res) => {
     res.send("Bonjour depuis le backend");
-});
-
-app.get("/formations", (req, res) => {
-    res.send("voici la liste des formations");
 });
 
 
