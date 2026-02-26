@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { getGalerie, addImage, removeImage } from '../../utils/storeGalerie'
+import * as galerieApi from '../../services/galerieApi'
 import { galerieCategories } from '../../data/galerieData'
 import { Image as ImageIcon, Plus, Trash2, ExternalLink } from 'lucide-react'
 
@@ -21,24 +21,32 @@ export default function GalerieAdmin() {
     const parsed = stored ? JSON.parse(stored) : null
     setUser(parsed)
     if (!parsed) { navigate('/admin/login'); return }
-    setItems(getGalerie())
+    galerieApi.getGalerie()
+      .then(data => setItems(data))
+      .catch(err => setMessage({ type: 'error', text: 'Erreur: ' + err.message }))
   }, [navigate])
 
   const handleChange = (e) => { setForm((f) => ({ ...f, [e.target.name]: e.target.value })) }
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (!form.src.trim()) { setMessage({ type: 'error', text: "L'URL de l'image est obligatoire." }); return }
-    addImage(form)
-    setItems(getGalerie())
-    setForm(emptyForm)
-    setMessage({ type: 'success', text: 'Image ajoutée.' })
+    try {
+      await galerieApi.createGalerieImage(form)
+      const data = await galerieApi.getGalerie()
+      setItems(data)
+      setForm(emptyForm)
+      setMessage({ type: 'success', text: 'Image ajoutée.' })
+    } catch (err) { setMessage({ type: 'error', text: 'Erreur: ' + err.message }) }
     setTimeout(() => setMessage({ type: '', text: '' }), 3000)
   }
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     if (!window.confirm('Supprimer cette image ?')) return
-    removeImage(id)
-    setItems(getGalerie())
-    setMessage({ type: 'success', text: 'Image supprimée.' })
+    try {
+      await galerieApi.deleteGalerieImage(id)
+      const data = await galerieApi.getGalerie()
+      setItems(data)
+      setMessage({ type: 'success', text: 'Image supprimée.' })
+    } catch (err) { setMessage({ type: 'error', text: 'Erreur: ' + err.message }) }
     setTimeout(() => setMessage({ type: '', text: '' }), 3000)
   }
 

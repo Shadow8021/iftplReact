@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { getFormations, addFormation, updateFormation, removeFormation } from '../../utils/storeFormations'
+import * as formationsApi from '../../services/formationsApi'
 import { BookOpen, Plus, Pencil, Trash2, ExternalLink } from 'lucide-react'
 
 const CATEGORIES = ['Industrie', 'Construction', 'Agriculture', 'Restauration', 'Environnement']
@@ -24,7 +24,9 @@ export default function FormationsAdmin() {
     const parsed = stored ? JSON.parse(stored) : null
     setUser(parsed)
     if (!parsed) { navigate('/admin/login'); return }
-    setItems(getFormations())
+    formationsApi.getFormations()
+      .then(data => setItems(data))
+      .catch(err => setMessage({ type: 'error', text: 'Erreur: ' + err.message }))
   }, [navigate])
 
   const handleChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
@@ -39,23 +41,29 @@ export default function FormationsAdmin() {
     })
   }
   const cancelEdit = () => { setEditingId(null); setForm(emptyForm) }
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (!form.titre.trim()) { setMessage({ type: 'error', text: 'Le titre est obligatoire.' }); return }
     const payload = { ...form, classes: form.classes.split(',').map((s) => s.trim()).filter(Boolean), modules: typeof form.modules === 'number' ? form.modules : parseInt(form.modules, 10) || 10 }
-    if (editingId) { updateFormation(editingId, payload); setMessage({ type: 'success', text: 'Formation modifiée.' }) }
-    else { addFormation(payload); setMessage({ type: 'success', text: 'Formation ajoutée.' }) }
-    setItems(getFormations())
-    setForm(emptyForm)
-    setEditingId(null)
+    try {
+      if (editingId) { await formationsApi.updateFormation(editingId, payload); setMessage({ type: 'success', text: 'Formation modifiée.' }) }
+      else { await formationsApi.createFormation(payload); setMessage({ type: 'success', text: 'Formation ajoutée.' }) }
+      const data = await formationsApi.getFormations()
+      setItems(data)
+      setForm(emptyForm)
+      setEditingId(null)
+    } catch (err) { setMessage({ type: 'error', text: 'Erreur: ' + err.message }) }
     setTimeout(() => setMessage({ type: '', text: '' }), 3000)
   }
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     if (!window.confirm('Supprimer cette formation ?')) return
-    removeFormation(id)
-    setItems(getFormations())
-    if (editingId === id) cancelEdit()
-    setMessage({ type: 'success', text: 'Formation supprimée.' })
+    try {
+      await formationsApi.deleteFormation(id)
+      const data = await formationsApi.getFormations()
+      setItems(data)
+      if (editingId === id) cancelEdit()
+      setMessage({ type: 'success', text: 'Formation supprimée.' })
+    } catch (err) { setMessage({ type: 'error', text: 'Erreur: ' + err.message }) }
     setTimeout(() => setMessage({ type: '', text: '' }), 3000)
   }
 

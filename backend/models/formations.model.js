@@ -1,5 +1,9 @@
 // Modèle simple en mémoire pour les formations
-const formationsData = require('../data/formationsData').formationsData
+const formationsDataRaw = require('../data/formationsData')
+const initFormations = Array.isArray(formationsDataRaw) ? formationsDataRaw : formationsDataRaw.formationsData || []
+
+let formationsData = [...initFormations]
+let nextId = formationsData.length ? Math.max(...formationsData.map(f => f.id || 0)) + 1 : 1
 
 function getAll() {
     return formationsData.map(f => ({ ...f }))
