@@ -21,9 +21,6 @@ export default function Navbar() {
         }, {
             nom: "Contact",
             path: "/contact"
-        }, {
-            nom: "ADMIN",
-            path: "/admin"
         }
     ]
     const [open, setOpen] = useState(false);
