@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { getActualiteById } from '../../utils/storeActualites'
+import { fetchActualiteById } from '../../utils/apiClient'
 import { ArrowLeft, Calendar } from 'lucide-react'
 
 function formatDate(dateStr) {
@@ -11,13 +11,45 @@ function formatDate(dateStr) {
 
 export default function ActualiteDetail() {
   const { id } = useParams()
-  const item = getActualiteById(id)
+  const [item, setItem] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
-  if (!item) {
+  useEffect(() => {
+    async function loadActualite() {
+      setLoading(true)
+      try {
+        const data = await fetchActualiteById(id)
+        setItem(data)
+        setError(null)
+      } catch (err) {
+        console.error('Erreur actualité par id:', err)
+        setError('Actualité introuvable.')
+      } finally {
+        setLoading(false)
+      }
+    }
+    if (id) {
+      loadActualite()
+    } else {
+      setLoading(false)
+      setError('ID introuvable.')
+    }
+  }, [id])
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-gray-600">Chargement de l'actualité...</p>
+      </div>
+    )
+  }
+
+  if (error || !item) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <p className="text-gray-600 mb-4">Actualité introuvable.</p>
+          <p className="text-gray-600 mb-4">{error || 'Actualité introuvable.'}</p>
           <Link to="/actualite" className="text-[#0553c1] hover:text-[#D00D2D] font-semibold flex items-center justify-center gap-2">
             <ArrowLeft className="w-5 h-5" /> Retour aux actualités
           </Link>

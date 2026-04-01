@@ -1,18 +1,27 @@
 import { useState, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import { getGalerie } from '../../utils/storeGalerie';
-import { galerieCategories } from '../../data/galerieData';
+import { getGalerie } from '../../services/galerieApi';
 
-const categories = ["Tous", ...galerieCategories];
 const PLACEHOLDER_IMG = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="256" viewBox="0 0 400 256"%3E%3Crect fill="%23e5e7eb" width="400" height="256"/%3E%3Ctext fill="%236b7280" x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="14"%3EImage non disponible%3C/text%3E%3C/svg%3E';
 
 export default function Galerie() {
     const [galleryData, setGalleryData] = useState([]);
+    const [categories, setCategories] = useState(["Tous"]);
     const [IndexActuel, setIndexActuel] = useState(null);
     const [activeCategory, setActiveCategory] = useState("Tous");
 
     useEffect(() => {
-        setGalleryData(getGalerie());
+        getGalerie()
+            .then((data) => {
+                setGalleryData(Array.isArray(data) ? data : []);
+                const uniqueCategories = Array.from(new Set((data || []).map((item) => item.category).filter(Boolean))).sort();
+                setCategories(["Tous", ...uniqueCategories]);
+            })
+            .catch((err) => {
+                console.error('Erreur fetchGalerie:', err);
+                setGalleryData([]);
+                setCategories(["Tous"]);
+            });
     }, []);
 
     const filteredData = activeCategory === "Tous"

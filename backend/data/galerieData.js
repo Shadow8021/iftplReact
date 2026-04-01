@@ -1,5 +1,5 @@
 // Données par défaut de la galerie (utilisées au premier chargement si localStorage vide)
-export const galerieDataDefault = [
+const galerieDataDefault = [
   {
     id: 1,
     src: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=400&fit=crop",
@@ -16,4 +16,6 @@ export const galerieDataDefault = [
   { id: 8, src: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=400&fit=crop", title: "Atelier Technique", category: "Campus", description: "Ateliers équipés de technologies modernes" }
 ]
 
-export const galerieCategories = ["Formations", "Campus", "BTP", "Industrie", "Services", "Projets"]
+const galerieCategories = ["Formations", "Campus", "BTP", "Industrie", "Services", "Projets"]
+
+module.exports = { galerieDataDefault, galerieCategories }

@@ -10,16 +10,28 @@ app.use(cors());
 app.use(express.json());
 
 // Routes API
+function banner() {
+    console.log('/api/galerie');
+    console.log('/api/formations');
+    console.log('/api/commentaire');
+    console.log('/api/actualites');
+}
 const galerieRouter = require('./routers/galerie.router')
 const formationsRouter = require('./routers/formations.router')
+const temoignageRouter = require('./routers/temoignage.router')
+const actualitesRouter = require('./routers/actualites.router')
+
+app.use('/api/commentaire', temoignageRouter)
 app.use('/api/galerie', galerieRouter)
 app.use('/api/formations', formationsRouter)
+app.use('/api/actualites', actualitesRouter)
 
 app.get("/", (req, res) => {
-    res.send("Bonjour depuis le backend");
+    res.send("server is running on localhost:" + PORT);
 });
-
 
 app.listen(PORT, () => {
     console.log(`Le serveur backend tourne sur le port ${PORT}`);
+    banner()
+
 });

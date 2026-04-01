@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { getActualites } from '../../utils/storeActualites'
+import { fetchActualites } from '../../utils/apiClient'
 import { ArrowRight, Calendar } from 'lucide-react'
 
 function formatDate(dateStr) {
@@ -11,9 +11,25 @@ function formatDate(dateStr) {
 
 export default function Actualite() {
   const [actualites, setActualites] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
-    setActualites(getActualites())
+    async function loadActualites() {
+      setLoading(true)
+      try {
+        const data = await fetchActualites()
+        setActualites(Array.isArray(data) ? data : [])
+        setError(null)
+      } catch (err) {
+        console.error('Erreur chargement actualités:', err)
+        setError('Impossible de charger les actualités pour le moment.')
+        setActualites([])
+      } finally {
+        setLoading(false)
+      }
+    }
+    loadActualites()
   }, [])
 
   return (
@@ -31,7 +47,11 @@ export default function Actualite() {
       {/* Liste des actualités */}
       <section className="w-full min-h-screen bg-linear-to-b from-[#f5f5f5] to-[#ffffff] py-16 px-5">
         <div className="max-w-7xl mx-auto">
-          {actualites.length === 0 ? (
+          {loading ? (
+            <p className="text-center text-gray-500 py-12">Chargement...</p>
+          ) : error ? (
+            <p className="text-center text-red-600 py-12">{error}</p>
+          ) : actualites.length === 0 ? (
             <p className="text-center text-gray-500 py-12">Aucune actualité pour le moment.</p>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

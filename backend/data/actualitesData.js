@@ -1,5 +1,5 @@
 // Données par défaut des actualités (utilisées au premier chargement si localStorage vide)
-export const actualitesDataDefault = [
+const actualitesDataDefault = [
   {
     id: 1,
     titre: "Rentrée 2025 - Inscriptions ouvertes",
@@ -25,3 +25,5 @@ export const actualitesDataDefault = [
     contenu: "L'IFTPL organise une journée portes ouvertes le samedi 8 mars 2025 de 9h à 15h. Visite des ateliers, présentation des filières et échanges avec les enseignants au programme."
   }
 ]
+
+module.exports = { actualitesDataDefault }

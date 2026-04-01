@@ -101,6 +101,71 @@ export async function fetchGalerieById(id) {
   }
 }
 
+export async function fetchActualites() {
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/actualites`)
+    if (!res.ok) throw new Error(`Erreur ${res.status}`)
+    return await res.json()
+  } catch (err) {
+    console.error('Erreur fetchActualites:', err)
+    throw err
+  }
+}
+
+export async function fetchActualiteById(id) {
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/actualites/${id}`)
+    if (!res.ok) throw new Error(`Erreur ${res.status}`)
+    return await res.json()
+  } catch (err) {
+    console.error('Erreur fetchActualiteById:', err)
+    throw err
+  }
+}
+
+export async function createActualite(data) {
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/actualites`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    if (!res.ok) throw new Error(`Erreur ${res.status}`)
+    return await res.json()
+  } catch (err) {
+    console.error('Erreur createActualite:', err)
+    throw err
+  }
+}
+
+export async function updateActualite(id, data) {
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/actualites/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    if (!res.ok) throw new Error(`Erreur ${res.status}`)
+    return await res.json()
+  } catch (err) {
+    console.error('Erreur updateActualite:', err)
+    throw err
+  }
+}
+
+export async function deleteActualite(id) {
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/actualites/${id}`, {
+      method: 'DELETE'
+    })
+    if (!res.ok) throw new Error(`Erreur ${res.status}`)
+    return res.status === 204
+  } catch (err) {
+    console.error('Erreur deleteActualite:', err)
+    throw err
+  }
+}
+
 export async function createGalerie(data) {
   try {
     const res = await fetch(`${API_BASE_URL}/api/galerie`, {

@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { getFormations } from '../utils/storeFormations'
+
+import { fetchFormations } from '../utils/apiClient'
 import { donnees } from '../components/statistique/stats'
 import {
   BookOpen,
@@ -18,6 +19,7 @@ import {
 export default function Dashboard() {
   const navigate = useNavigate()
   const [user, setUser] = useState(null)
+  const [formations, setFormations] = useState([])
 
   /* ================= AUTH ================= */
 
@@ -36,7 +38,18 @@ export default function Dashboard() {
 
   /* ================= DATA ================= */
 
-  const formations = useMemo(() => getFormations(), [])
+  useEffect(() => {
+    async function loadFormations() {
+      try {
+        const data = await fetchFormations()
+        setFormations(Array.isArray(data) ? data : [])
+      } catch (err) {
+        console.error('Erreur chargement formations dashboard:', err)
+        setFormations([])
+      }
+    }
+    loadFormations()
+  }, [])
 
   const statsMap = useMemo(() => {
     return donnees.reduce((acc, item) => {

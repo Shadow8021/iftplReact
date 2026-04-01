@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { getFormations } from '../../utils/storeFormations'
+
 import * as API from '../../utils/apiClient'
 
 export default function Formation() {

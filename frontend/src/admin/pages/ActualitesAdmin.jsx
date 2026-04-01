@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import {
-  getActualites,
-  addActualite,
+  fetchActualites,
+  createActualite,
   updateActualite,
-  removeActualite,
-} from '../../utils/storeActualites'
+  deleteActualite,
+} from '../../utils/apiClient'
 import {
   Plus,
   Pencil,
@@ -42,7 +42,12 @@ export default function ActualitesAdmin() {
         navigate('/admin/login', { replace: true })
       } else {
         setUser(stored)
-        setItems(getActualites())
+        fetchActualites()
+          .then(data => setItems(Array.isArray(data) ? data : []))
+          .catch(err => {
+            console.error('Erreur chargement actualités:', err)
+            showMessage('error', 'Erreur de chargement des actualités.')
+          })
       }
     } catch {
       navigate('/admin/login', { replace: true })
@@ -61,8 +66,14 @@ export default function ActualitesAdmin() {
     setTimeout(() => setMessage(null), 3000)
   }, [])
 
-  const refreshItems = useCallback(() => {
-    setItems(getActualites())
+  const refreshItems = useCallback(async () => {
+    try {
+      const data = await fetchActualites()
+      setItems(Array.isArray(data) ? data : [])
+    } catch (err) {
+      console.error('Erreur refresh actualités:', err)
+      showMessage('error', 'Erreur de rechargement.')
+    }
   }, [])
 
   /* ================= EVENTS ================= */
@@ -84,7 +95,7 @@ export default function ActualitesAdmin() {
   }, [])
 
   const handleSubmit = useCallback(
-    (e) => {
+    async (e) => {
       e.preventDefault()
 
       if (!form.titre.trim()) {
@@ -92,30 +103,40 @@ export default function ActualitesAdmin() {
         return
       }
 
-      if (editingId) {
-        updateActualite(editingId, form)
-        showMessage('success', 'Actualité modifiée.')
-      } else {
-        addActualite(form)
-        showMessage('success', 'Actualité ajoutée.')
-      }
+      try {
+        if (editingId) {
+          await updateActualite(editingId, form)
+          showMessage('success', 'Actualité modifiée.')
+        } else {
+          await createActualite(form)
+          showMessage('success', 'Actualité ajoutée.')
+        }
 
-      refreshItems()
-      resetForm()
+        resetForm()
+        await refreshItems()
+      } catch (err) {
+        console.error('Erreur sauvegarde actualité:', err)
+        showMessage('error', 'Erreur lors de la sauvegarde.')
+      }
     },
-    [form, editingId, refreshItems, resetForm, showMessage]
+    [form, editingId, resetForm, refreshItems, showMessage]
   )
 
   const handleDelete = useCallback(
-    (id) => {
+    async (id) => {
       if (!window.confirm('Supprimer cette actualité ?')) return
 
-      removeActualite(id)
-      refreshItems()
+      try {
+        await deleteActualite(id)
+        await refreshItems()
 
-      if (editingId === id) resetForm()
+        if (editingId === id) resetForm()
 
-      showMessage('success', 'Actualité supprimée.')
+        showMessage('success', 'Actualité supprimée.')
+      } catch (err) {
+        console.error('Erreur suppression actualité:', err)
+        showMessage('error', 'Erreur lors de la suppression.')
+      }
     },
     [editingId, refreshItems, resetForm, showMessage]
   )

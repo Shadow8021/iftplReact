@@ -1,23 +1,51 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CheckCircle, Clock, Users, Award, BookOpen, Briefcase, ArrowRight, GraduationCap } from 'lucide-react';
 import { useLocation, useParams, Link } from 'react-router-dom';
-import { getFormationById, getFormations } from '../../utils/storeFormations';
+
+import { fetchFormationById } from '../../utils/apiClient';
 
 export default function FormationDetail() {
     const [activeTab, setActiveTab] = useState('overview');
     const location = useLocation();
     const { id } = useParams();
 
-    let formation = location.state?.formation;
-    if (!formation && id) {
-        formation = getFormationById(id);
-    }
-    if (!formation) {
-        const all = getFormations();
-        formation = all[0];
+    const [formation, setFormation] = useState(location.state?.formation || null);
+    const [loading, setLoading] = useState(!location.state?.formation);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        async function loadFormation() {
+            if (location.state?.formation) return
+            if (!id) {
+                setError('Formation introuvable.')
+                setLoading(false)
+                return
+            }
+            try {
+                setLoading(true)
+                const data = await fetchFormationById(id)
+                setFormation(data)
+                setError(null)
+            } catch (err) {
+                console.error('Erreur chargement formation:', err)
+                setFormation(null)
+                setError('Formation introuvable.')
+            } finally {
+                setLoading(false)
+            }
+        }
+        loadFormation()
+    }, [id, location.state])
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <p className="text-gray-600">Chargement de la formation...</p>
+            </div>
+        );
     }
 
-    if (!formation) {
+    if (error || !formation) {
         return (
             <div className="min-h-screen flex items-center justify-center">
                 <div className="text-center">
