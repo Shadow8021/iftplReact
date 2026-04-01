@@ -1,9 +1,18 @@
 import { Link } from "react-router-dom";
 import { Contacts } from "../contacts/Contacts";
-import { formationsData } from "../../data/formationsData";
+import { getFormations } from "../../services/formationsApi";
+import { useEffect, useState } from "react";
 
 export default function Footer() {
-    const formations = formationsData.slice(0, 3); // Affiche les 4 premières formations
+    const [formations, setFormations] = useState([]);
+
+    useEffect(() => {
+        const fetchFormations = async () => {
+            const data = await getFormations();
+            setFormations(data.slice(0, 3)); // Affiche les 4 premières formations
+        };
+        fetchFormations();
+    }, []);
 
     return (
         <div>

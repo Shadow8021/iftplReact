@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import * as galerieApi from '../../services/galerieApi'
-import { galerieCategories } from '../../data/galerieData'
 import { Image as ImageIcon, Plus, Trash2, ExternalLink } from 'lucide-react'
 
 const emptyForm = { src: '', title: '', category: 'Formations', description: '' }
+const DEFAULT_CATEGORIES = ['Formations', 'Campus', 'BTP', 'Industrie', 'Services', 'Projets']
 const PLACEHOLDER_IMG = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="225" viewBox="0 0 400 225"%3E%3Crect fill="%23e5e7eb" width="400" height="225"/%3E%3Ctext fill="%236b7280" x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="14"%3EImage non disponible%3C/text%3E%3C/svg%3E'
 
 const inputClass = 'w-full rounded-lg border-2 border-[#002E6D]/20 bg-white py-2.5 px-3 text-[#002E6D] placeholder-slate-400 focus:border-[#D00D2D] focus:outline-none focus:ring-2 focus:ring-[#D00D2D]/30 transition-colors'
@@ -13,8 +13,14 @@ export default function GalerieAdmin() {
   const navigate = useNavigate()
   const [user, setUser] = useState(null)
   const [items, setItems] = useState([])
+  const [categories, setCategories] = useState(DEFAULT_CATEGORIES)
   const [form, setForm] = useState(emptyForm)
   const [message, setMessage] = useState({ type: '', text: '' })
+
+  const updateCategories = (itemsList) => {
+    const unique = Array.from(new Set((itemsList || []).map((i) => i.category).filter(Boolean)))
+    setCategories(['Formations', ...unique.filter((c) => c !== 'Formations')])
+  }
 
   useEffect(() => {
     const stored = localStorage.getItem('user')
@@ -22,7 +28,10 @@ export default function GalerieAdmin() {
     setUser(parsed)
     if (!parsed) { navigate('/admin/login'); return }
     galerieApi.getGalerie()
-      .then(data => setItems(data))
+      .then(data => {
+        setItems(data)
+        updateCategories(data)
+      })
       .catch(err => setMessage({ type: 'error', text: 'Erreur: ' + err.message }))
   }, [navigate])
 
@@ -34,6 +43,7 @@ export default function GalerieAdmin() {
       await galerieApi.createGalerieImage(form)
       const data = await galerieApi.getGalerie()
       setItems(data)
+      updateCategories(data)
       setForm(emptyForm)
       setMessage({ type: 'success', text: 'Image ajoutée.' })
     } catch (err) { setMessage({ type: 'error', text: 'Erreur: ' + err.message }) }
@@ -45,6 +55,7 @@ export default function GalerieAdmin() {
       await galerieApi.deleteGalerieImage(id)
       const data = await galerieApi.getGalerie()
       setItems(data)
+      updateCategories(data)
       setMessage({ type: 'success', text: 'Image supprimée.' })
     } catch (err) { setMessage({ type: 'error', text: 'Erreur: ' + err.message }) }
     setTimeout(() => setMessage({ type: '', text: '' }), 3000)
@@ -71,11 +82,10 @@ export default function GalerieAdmin() {
 
       {message.text && (
         <div
-          className={`mb-6 rounded-lg border px-4 py-3 text-sm font-medium ${
-            message.type === 'error'
+          className={`mb-6 rounded-lg border px-4 py-3 text-sm font-medium ${message.type === 'error'
               ? 'border-red-200 bg-red-50 text-red-800'
               : 'border-emerald-200 bg-emerald-50 text-emerald-800'
-          }`}
+            }`}
         >
           {message.text}
         </div>
@@ -99,7 +109,7 @@ export default function GalerieAdmin() {
             <div>
               <label className="mb-1.5 block text-sm font-medium text-[#002E6D]">Catégorie</label>
               <select name="category" value={form.category} onChange={handleChange} className={inputClass}>
-                {galerieCategories.map((c) => <option key={c} value={c}>{c}</option>)}
+                {categories.map((c) => <option key={c} value={c}>{c}</option>)}
               </select>
             </div>
             <div className="md:col-span-2">
