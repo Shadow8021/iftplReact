@@ -1,19 +1,19 @@
-const API_BASE = 'http://localhost:5000/api'
+import { API_BASE_URL, API_ENDPOINTS } from '../config/api.js'
 
 export async function getGalerie() {
-  const res = await fetch(`${API_BASE}/galerie`)
+  const res = await fetch(`${API_BASE_URL}${API_ENDPOINTS.galerie.list}`)
   if (!res.ok) throw new Error('Erreur API galerie')
   return res.json()
 }
 
 export async function getGalerieById(id) {
-  const res = await fetch(`${API_BASE}/galerie/${id}`)
+  const res = await fetch(`${API_BASE_URL}${API_ENDPOINTS.galerie.getById(id)}`)
   if (!res.ok) throw new Error('Image non trouvée')
   return res.json()
 }
 
 export async function createGalerieImage(data) {
-  const res = await fetch(`${API_BASE}/galerie`, {
+  const res = await fetch(`${API_BASE_URL}${API_ENDPOINTS.galerie.create}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
@@ -23,7 +23,7 @@ export async function createGalerieImage(data) {
 }
 
 export async function updateGalerieImage(id, data) {
-  const res = await fetch(`${API_BASE}/galerie/${id}`, {
+  const res = await fetch(`${API_BASE_URL}${API_ENDPOINTS.galerie.update(id)}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
@@ -33,7 +33,7 @@ export async function updateGalerieImage(id, data) {
 }
 
 export async function deleteGalerieImage(id) {
-  const res = await fetch(`${API_BASE}/galerie/${id}`, { method: 'DELETE' })
+  const res = await fetch(`${API_BASE_URL}${API_ENDPOINTS.galerie.delete(id)}`, { method: 'DELETE' })
   if (!res.ok) throw new Error('Erreur lors de la suppression')
   return res.ok
 }

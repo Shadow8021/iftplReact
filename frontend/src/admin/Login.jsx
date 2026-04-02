@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Lock, Mail } from 'lucide-react'
-import { LoginAdmin } from './auth/loginAdmin'
+import { loginAdmin } from '../services/authApi'
 
 export default function Login() {
     const navigate = useNavigate()
@@ -20,30 +20,24 @@ export default function Login() {
         setError('')
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         setLoading(true)
         setError('')
 
-        // Simulation de connexion (à remplacer par un vrai appel API)
-        setTimeout(() => {
-            const isLoginValid = LoginAdmin({
-                userName: formData.email,
-                password: formData.password
-            });
-            if (isLoginValid) {
-                // En production : vérifier identifiants, stocker token, etc.
-                let user = {
-                    email: formData.email,
-                    password: formData.password
-                }
-                localStorage.setItem('user', JSON.stringify(user))
-                navigate('/admin')
-            } else {
-                setError('Veuillez remplir tous les champs.')
+        try {
+            const data = await loginAdmin({ email: formData.email, password: formData.password })
+            const userItem = {
+                token: data.accessToken,
+                ...data.user
             }
+            localStorage.setItem('user', JSON.stringify(userItem))
+            navigate('/admin')
+        } catch (err) {
+            setError(err.message || 'Échec de la connexion')
+        } finally {
             setLoading(false)
-        }, 800)
+        }
     }
 
     return (

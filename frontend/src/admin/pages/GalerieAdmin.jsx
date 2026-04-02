@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import * as galerieApi from '../../services/galerieApi'
+import { me } from '../../services/authApi'
 import { Image as ImageIcon, Plus, Trash2, ExternalLink } from 'lucide-react'
 
 const emptyForm = { src: '', title: '', category: 'Formations', description: '' }
@@ -23,16 +24,26 @@ export default function GalerieAdmin() {
   }
 
   useEffect(() => {
-    const stored = localStorage.getItem('user')
-    const parsed = stored ? JSON.parse(stored) : null
-    setUser(parsed)
-    if (!parsed) { navigate('/admin/login'); return }
-    galerieApi.getGalerie()
-      .then(data => {
+    async function init() {
+      try {
+        const stored = localStorage.getItem('user')
+        const parsed = stored ? JSON.parse(stored) : null
+        if (!parsed?.token) {
+          navigate('/admin/login');
+          return
+        }
+        await me(parsed.token)
+        setUser(parsed)
+        const data = await galerieApi.getGalerie()
         setItems(data)
         updateCategories(data)
-      })
-      .catch(err => setMessage({ type: 'error', text: 'Erreur: ' + err.message }))
+      } catch (err) {
+        console.error('Erreur auth/galerie:', err)
+        localStorage.removeItem('user')
+        navigate('/admin/login')
+      }
+    }
+    init()
   }, [navigate])
 
   const handleChange = (e) => { setForm((f) => ({ ...f, [e.target.name]: e.target.value })) }
@@ -83,8 +94,8 @@ export default function GalerieAdmin() {
       {message.text && (
         <div
           className={`mb-6 rounded-lg border px-4 py-3 text-sm font-medium ${message.type === 'error'
-              ? 'border-red-200 bg-red-50 text-red-800'
-              : 'border-emerald-200 bg-emerald-50 text-emerald-800'
+            ? 'border-red-200 bg-red-50 text-red-800'
+            : 'border-emerald-200 bg-emerald-50 text-emerald-800'
             }`}
         >
           {message.text}

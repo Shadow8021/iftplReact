@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 
 import { fetchFormations } from '../utils/apiClient'
+import { me } from '../services/authApi'
 import { donnees } from '../components/statistique/stats'
 import {
   BookOpen,
@@ -24,16 +25,23 @@ export default function Dashboard() {
   /* ================= AUTH ================= */
 
   useEffect(() => {
-    try {
-      const stored = JSON.parse(localStorage.getItem('user') || 'null')
-      if (!stored) {
+    async function validateSession() {
+      try {
+        const stored = JSON.parse(localStorage.getItem('user') || 'null')
+        if (!stored?.token) {
+          navigate('/admin/login', { replace: true })
+          return
+        }
+
+        const profile = await me(stored.token)
+        setUser({ ...stored, ...profile })
+      } catch {
+        localStorage.removeItem('user')
         navigate('/admin/login', { replace: true })
-      } else {
-        setUser(stored)
       }
-    } catch {
-      navigate('/admin/login', { replace: true })
     }
+
+    validateSession()
   }, [navigate])
 
   /* ================= DATA ================= */

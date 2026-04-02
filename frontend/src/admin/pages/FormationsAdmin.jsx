@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import * as formationsApi from '../../services/formationsApi'
+import { me } from '../../services/authApi'
 import { Plus, Pencil, Trash2, ExternalLink } from 'lucide-react'
 
 const CATEGORIES = ['Industrie', 'Construction', 'Agriculture', 'Restauration', 'Environnement']
@@ -20,13 +21,25 @@ export default function FormationsAdmin() {
   const [message, setMessage] = useState({ type: '', text: '' })
 
   useEffect(() => {
-    const stored = localStorage.getItem('user')
-    const parsed = stored ? JSON.parse(stored) : null
-    setUser(parsed)
-    if (!parsed) { navigate('/admin/login'); return }
-    formationsApi.getFormations()
-      .then(data => setItems(data))
-      .catch(err => setMessage({ type: 'error', text: 'Erreur: ' + err.message }))
+    async function init() {
+      try {
+        const stored = localStorage.getItem('user')
+        const parsed = stored ? JSON.parse(stored) : null
+        if (!parsed?.token) {
+          navigate('/admin/login');
+          return
+        }
+        await me(parsed.token)
+        setUser(parsed)
+        const data = await formationsApi.getFormations()
+        setItems(data)
+      } catch (err) {
+        console.error('Erreur auth/formation:', err)
+        localStorage.removeItem('user')
+        navigate('/admin/login')
+      }
+    }
+    init()
   }, [navigate])
 
   const handleChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }))

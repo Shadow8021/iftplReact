@@ -6,6 +6,7 @@ import {
   updateActualite,
   deleteActualite,
 } from '../../utils/apiClient'
+import { me } from '../../services/authApi'
 import {
   Plus,
   Pencil,
@@ -36,22 +37,24 @@ export default function ActualitesAdmin() {
   /* ================= AUTH ================= */
 
   useEffect(() => {
-    try {
-      const stored = JSON.parse(localStorage.getItem('user') || 'null')
-      if (!stored) {
-        navigate('/admin/login', { replace: true })
-      } else {
+    async function init() {
+      try {
+        const stored = JSON.parse(localStorage.getItem('user') || 'null')
+        if (!stored?.token) {
+          navigate('/admin/login', { replace: true })
+          return
+        }
+        await me(stored.token)
         setUser(stored)
-        fetchActualites()
-          .then(data => setItems(Array.isArray(data) ? data : []))
-          .catch(err => {
-            console.error('Erreur chargement actualités:', err)
-            showMessage('error', 'Erreur de chargement des actualités.')
-          })
+        const data = await fetchActualites()
+        setItems(Array.isArray(data) ? data : [])
+      } catch (err) {
+        console.error('Erreur auth/actualites:', err)
+        localStorage.removeItem('user')
+        navigate('/admin/login', { replace: true })
       }
-    } catch {
-      navigate('/admin/login', { replace: true })
     }
+    init()
   }, [navigate])
 
   /* ================= HELPERS ================= */
@@ -170,11 +173,10 @@ export default function ActualitesAdmin() {
       {/* MESSAGE */}
       {message && (
         <div
-          className={`rounded-lg border px-4 py-3 text-sm font-medium ${
-            message.type === 'error'
+          className={`rounded-lg border px-4 py-3 text-sm font-medium ${message.type === 'error'
               ? 'border-red-200 bg-red-50 text-red-800'
               : 'border-emerald-200 bg-emerald-50 text-emerald-800'
-          }`}
+            }`}
         >
           {message.text}
         </div>
