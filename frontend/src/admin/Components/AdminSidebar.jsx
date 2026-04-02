@@ -52,7 +52,7 @@ export default function AdminSidebar() {
 
   return (
     <aside className="fixed left-0 top-0 z-40 flex h-screen w-64 flex-col border-r border-[#002E6D]/80 bg-[#002E6D] shadow-xl">
-      
+
       {/* Brand */}
       <div className="flex h-16 items-center gap-3 border-b border-[#0553c1]/50 px-5">
         <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#D00D2D]">
@@ -74,21 +74,19 @@ export default function AdminSidebar() {
               type="button"
               onClick={() => handleNavigation(path)}
               aria-current={isActive ? 'page' : undefined}
-              className={`${baseItemClass} ${
-                isActive
-                  ? 'bg-[#D00D2D] text-white shadow-md'
-                  : 'text-blue-100 hover:bg-[#0553c1] hover:text-white'
-              }`}
+              className={`${baseItemClass} ${isActive
+                ? 'bg-[#D00D2D] text-white shadow-md'
+                : 'text-blue-100 hover:bg-[#0553c1] hover:text-white'
+                }`}
             >
               <Icon className="h-5 w-5 shrink-0 opacity-90" />
               <span className="flex-1">{name}</span>
 
               <ChevronRight
-                className={`h-4 w-4 shrink-0 opacity-60 transition-transform duration-200 ${
-                  isActive
-                    ? 'translate-x-1'
-                    : 'group-hover:translate-x-1'
-                }`}
+                className={`h-4 w-4 shrink-0 opacity-60 transition-transform duration-200 ${isActive
+                  ? 'translate-x-1'
+                  : 'group-hover:translate-x-1'
+                  }`}
               />
             </button>
           )

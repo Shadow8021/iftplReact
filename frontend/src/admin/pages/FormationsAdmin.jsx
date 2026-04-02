@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import * as formationsApi from '../../services/formationsApi'
-import { BookOpen, Plus, Pencil, Trash2, ExternalLink } from 'lucide-react'
+import { Plus, Pencil, Trash2, ExternalLink } from 'lucide-react'
 
 const CATEGORIES = ['Industrie', 'Construction', 'Agriculture', 'Restauration', 'Environnement']
 const NIVEAUX = ['Débutant', 'Intermédiaire', 'Avancé']

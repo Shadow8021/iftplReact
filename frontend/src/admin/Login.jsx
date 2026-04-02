@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Lock, Mail } from 'lucide-react'
+import { LoginAdmin } from './auth/loginAdmin'
 
 export default function Login() {
     const navigate = useNavigate()
@@ -26,7 +27,11 @@ export default function Login() {
 
         // Simulation de connexion (à remplacer par un vrai appel API)
         setTimeout(() => {
-            if (formData.email && formData.password) {
+            const isLoginValid = LoginAdmin({
+                userName: formData.email,
+                password: formData.password
+            });
+            if (isLoginValid) {
                 // En production : vérifier identifiants, stocker token, etc.
                 let user = {
                     email: formData.email,
