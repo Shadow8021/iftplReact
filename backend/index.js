@@ -4,9 +4,9 @@ const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
 const app = express();
-const PORT = 3000; // Port confirmé libre
+const PORT = process.env.PORT || 3001;
 
-console.log('🔄 Démarrage du backend IFTPL (version debug)...');
+console.log('🔄 Démarrage du backend IFTPL...');
 
 // Configuration CORS
 const corsOptions = {
@@ -21,68 +21,32 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
-console.log('✅ Middlewares de base OK');
+console.log('✅ Middlewares configurés');
 
-// Test des imports un par un
-try {
-    const { initializeUsers } = require('./controllers/auth.controller');
-    initializeUsers();
-    console.log('✅ Auth controller OK');
-} catch (error) {
-    console.log('❌ Auth controller ERROR:', error.message);
-    process.exit(1);
-}
+// Import du contrôleur auth pour l'initialisation des utilisateurs
+const { initializeUsers } = require('./controllers/auth.controller');
 
-try {
-    const authRouter = require('./routers/auth.router');
-    app.use('/api/auth', authRouter);
-    console.log('✅ Auth router OK');
-} catch (error) {
-    console.log('❌ Auth router ERROR:', error.message);
-    process.exit(1);
-}
+// Initialiser les utilisateurs
+initializeUsers();
 
-try {
-    const galerieRouter = require('./routers/galerie.router');
-    app.use('/api/galerie', galerieRouter);
-    console.log('✅ Galerie router OK');
-} catch (error) {
-    console.log('❌ Galerie router ERROR:', error.message);
-    process.exit(1);
-}
+// Routes API
+const authRouter = require('./routers/auth.router');
+const galerieRouter = require('./routers/galerie.router');
+const formationsRouter = require('./routers/formations.router');
+const temoignageRouter = require('./routers/temoignage.router');
+const actualitesRouter = require('./routers/actualites.router');
 
-try {
-    const formationsRouter = require('./routers/formations.router');
-    app.use('/api/formations', formationsRouter);
-    console.log('✅ Formations router OK');
-} catch (error) {
-    console.log('❌ Formations router ERROR:', error.message);
-    process.exit(1);
-}
+app.use('/api/auth', authRouter);
+app.use('/api/commentaire', temoignageRouter);
+app.use('/api/galerie', galerieRouter);
+app.use('/api/formations', formationsRouter);
+app.use('/api/actualites', actualitesRouter);
 
-try {
-    const temoignageRouter = require('./routers/temoignage.router');
-    app.use('/api/commentaire', temoignageRouter);
-    console.log('✅ Temoignage router OK');
-} catch (error) {
-    console.log('❌ Temoignage router ERROR:', error.message);
-    process.exit(1);
-}
-
-try {
-    const actualitesRouter = require('./routers/actualites.router');
-    app.use('/api/actualites', actualitesRouter);
-    console.log('✅ Actualites router OK');
-} catch (error) {
-    console.log('❌ Actualites router ERROR:', error.message);
-    process.exit(1);
-}
-
-console.log('✅ Tous les routers OK');
+console.log('✅ Routes configurées');
 
 // Route de santé
 app.get("/", (req, res) => {
-    res.send("IFTPL Backend Debug - Port " + PORT);
+    res.send("IFTPL Backend - Port " + PORT);
 });
 
 // Gestion des erreurs 404
@@ -104,11 +68,9 @@ app.use((err, req, res, next) => {
 });
 
 // Démarrage du serveur
-console.log(`🚀 Tentative de démarrage sur port ${PORT}...`);
-
 const server = app.listen(PORT, () => {
     console.log('\n=====================================');
-    console.log(`🎉 SUCCÈS: Backend IFTPL démarré sur port ${PORT}`);
+    console.log(`🚀 Serveur IFTPL démarré sur port ${PORT}`);
     console.log('=====================================');
     console.log('\n📍 Routes disponibles:');
     console.log('   POST   /api/auth/login     - Connexion');
@@ -122,7 +84,11 @@ const server = app.listen(PORT, () => {
 });
 
 server.on('error', (err) => {
-    console.error(`❌ ERREUR FATALE: Impossible de démarrer sur port ${PORT}`);
-    console.error('Détails:', err.message);
+    if (err.code === 'EADDRINUSE') {
+        console.error(`❌ Le port ${PORT} est déjà en utilisation`);
+        console.error('💡 Essayez: taskkill /f /im node.exe');
+    } else {
+        console.error('❌ Erreur serveur:', err.message);
+    }
     process.exit(1);
 });
