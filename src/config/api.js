@@ -2,7 +2,7 @@
  * Configuration centralisée de l'API
  * Utilise VITE_API_URL depuis .env, sinon localhost:5000
  */
-export const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://iftplbackend.onrender.com';
+export const API_BASE_URL = import.meta.env.VITE_API_URL;
 export const API_ENDPOINTS = {
     auth: {
         login: '/api/auth/login',
