@@ -1,5 +1,6 @@
 import { CheckCircle, Target, Heart, Users } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 export default function About() {
     const values = [
         {
@@ -70,6 +71,13 @@ export default function About() {
 
     return (
         <div className="w-full">
+            <Helmet>
+                <title>À propos - IFTPL</title>
+                <meta name="description" content="En savoir plus sur l'IFTPL, notre histoire, notre mission, nos réalisations et nos valeurs." />
+                <meta name="keywords" content="IFTPL, à propos, histoire, mission, valeurs, formation" />
+                <meta property="og:title" content="À propos de IFTPL" />
+                <meta property="og:description" content="IFTPL propose une formation technique orientée emploi en République du Congo et région." />
+            </Helmet>
             {/* Hero Section */}
             <section className="w-full bg-linear-to-r from-[#002E6D] to-[#0553c1] text-white py-20 px-5">
                 <div className="max-w-7xl mx-auto text-center">

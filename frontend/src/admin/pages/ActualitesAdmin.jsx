@@ -39,18 +39,16 @@ export default function ActualitesAdmin() {
   useEffect(() => {
     async function init() {
       try {
-        const stored = JSON.parse(localStorage.getItem('user') || 'null')
-        if (!stored?.token) {
-          navigate('/admin/login', { replace: true })
-          return
-        }
-        await me(stored.token)
-        setUser(stored)
+        // Vérifier l'authentification en appelant me()
+        // Le cookie httpOnly est envoyé automatiquement
+        const profile = await me()
+        setUser(profile)
+
+        // Charger les actualités
         const data = await fetchActualites()
         setItems(Array.isArray(data) ? data : [])
       } catch (err) {
         console.error('Erreur auth/actualites:', err)
-        localStorage.removeItem('user')
         navigate('/admin/login', { replace: true })
       }
     }
@@ -174,8 +172,8 @@ export default function ActualitesAdmin() {
       {message && (
         <div
           className={`rounded-lg border px-4 py-3 text-sm font-medium ${message.type === 'error'
-              ? 'border-red-200 bg-red-50 text-red-800'
-              : 'border-emerald-200 bg-emerald-50 text-emerald-800'
+            ? 'border-red-200 bg-red-50 text-red-800'
+            : 'border-emerald-200 bg-emerald-50 text-emerald-800'
             }`}
         >
           {message.text}

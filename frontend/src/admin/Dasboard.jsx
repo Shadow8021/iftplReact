@@ -27,16 +27,12 @@ export default function Dashboard() {
   useEffect(() => {
     async function validateSession() {
       try {
-        const stored = JSON.parse(localStorage.getItem('user') || 'null')
-        if (!stored?.token) {
-          navigate('/admin/login', { replace: true })
-          return
-        }
-
-        const profile = await me(stored.token)
-        setUser({ ...stored, ...profile })
-      } catch {
-        localStorage.removeItem('user')
+        // Appeler /auth/me pour vérifier si l'utilisateur est authentifié
+        // Le cookie httpOnly est envoyé automatiquement
+        const profile = await me()
+        setUser(profile)
+      } catch (error) {
+        // Si l'authentification échoue, rediriger vers la page de login
         navigate('/admin/login', { replace: true })
       }
     }

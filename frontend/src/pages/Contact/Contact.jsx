@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Send } from 'lucide-react';
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -57,6 +58,13 @@ export default function Contact() {
 
     return (
         <div className="w-full">
+            <Helmet>
+                <title>Contact - IFTPL</title>
+                <meta name="description" content="Contactez l'IFTPL pour des informations sur les formations, l'admission et le partenariat." />
+                <meta name="keywords" content="IFTPL, contact, email, téléphone, adresse, formation" />
+                <meta property="og:title" content="Contactez l'IFTPL" />
+                <meta property="og:description" content="Envoyez un message à l'équipe IFTPL ou retrouvez nos coordonnées de contact." />
+            </Helmet>
             {/* Hero Section */}
             <section className="w-full bg-linear-to-r from-[#002E6D] to-[#0553c1] text-white py-16 px-5">
                 <div className="max-w-7xl mx-auto text-center">

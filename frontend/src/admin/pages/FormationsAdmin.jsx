@@ -23,19 +23,16 @@ export default function FormationsAdmin() {
   useEffect(() => {
     async function init() {
       try {
-        const stored = localStorage.getItem('user')
-        const parsed = stored ? JSON.parse(stored) : null
-        if (!parsed?.token) {
-          navigate('/admin/login');
-          return
-        }
-        await me(parsed.token)
-        setUser(parsed)
+        // Vérifier l'authentification en appelant me()
+        // Le cookie httpOnly est envoyé automatiquement
+        const profile = await me()
+        setUser(profile)
+
+        // Charger les formations
         const data = await formationsApi.getFormations()
         setItems(data)
       } catch (err) {
         console.error('Erreur auth/formation:', err)
-        localStorage.removeItem('user')
         navigate('/admin/login')
       }
     }

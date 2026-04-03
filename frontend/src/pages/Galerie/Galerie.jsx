@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 import { getGalerie } from '../../services/galerieApi';
 
 const PLACEHOLDER_IMG = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="256" viewBox="0 0 400 256"%3E%3Crect fill="%23e5e7eb" width="400" height="256"/%3E%3Ctext fill="%236b7280" x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="14"%3EImage non disponible%3C/text%3E%3C/svg%3E';
@@ -48,6 +49,13 @@ export default function Galerie() {
 
     return (
         <div className='w-full'>
+            <Helmet>
+                <title>Galerie - IFTPL</title>
+                <meta name="description" content="Explorez les photos de formations, campus et événements à l'IFTPL." />
+                <meta name="keywords" content="IFTPL, galerie, images, photos, formation" />
+                <meta property="og:title" content="Galerie photos IFTPL" />
+                <meta property="og:description" content="Découvrez la vie quotidienne et les infrastructures d'IFTPL à travers notre galerie." />
+            </Helmet>
             {/* Hero Section */}
             <section className="w-full bg-linear-to-r from-[#002E6D] to-[#0553c1] text-white py-16 px-5">
                 <div className="max-w-7xl mx-auto text-center">

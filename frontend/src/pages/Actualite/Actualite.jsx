@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { fetchActualites } from '../../utils/apiClient'
 import { ArrowRight, Calendar } from 'lucide-react'
+import { Helmet } from 'react-helmet-async'
 
 function formatDate(dateStr) {
   if (!dateStr) return ''
@@ -34,6 +35,13 @@ export default function Actualite() {
 
   return (
     <div className="w-full">
+      <Helmet>
+        <title>Actualités - IFTPL</title>
+        <meta name="description" content="Suivez les dernières actualités, événements et nouveautés de l'IFTPL." />
+        <meta name="keywords" content="IFTPL, actualités, événements, formations" />
+        <meta property="og:title" content="Actualités IFTPL" />
+        <meta property="og:description" content="Restez informé des dernières avancées et événements chez IFTPL." />
+      </Helmet>
       {/* Hero Section */}
       <section className="w-full bg-linear-to-r from-[#002E6D] to-[#0553c1] text-white py-16 px-5">
         <div className="max-w-7xl mx-auto text-center">

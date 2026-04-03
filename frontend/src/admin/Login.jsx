@@ -26,12 +26,13 @@ export default function Login() {
         setError('')
 
         try {
-            const data = await loginAdmin({ email: formData.email, password: formData.password })
-            const userItem = {
-                token: data.accessToken,
-                ...data.user
-            }
-            localStorage.setItem('user', JSON.stringify(userItem))
+            // Envoi des identifiants
+            const result = await loginAdmin({ email: formData.email, password: formData.password })
+
+            // Le serveur envoie un cookie httpOnly automatiquement
+            // Pas besoin de le stocker dans localStorage
+
+            // Redirection vers le tableau de bord
             navigate('/admin')
         } catch (err) {
             setError(err.message || 'Échec de la connexion')
