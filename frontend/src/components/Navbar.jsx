@@ -49,21 +49,13 @@ export default function Navbar() {
                 </div>
             </div>
 
-            {/* Menu mobile */}
-            <div className={`md:hidden z-10 transition-all duration-300 ${open ? "block" : "hidden"}`}>
-                <ul className="px-4 pb-4 space-y-3 bg-[#09063c80] ">
-                    {items.map((el, index) => (
 
-                        <li key={index} className="hover:text-[#D00D2D] transition ease-in pointer text-right"><NavLink onClick={() => setOpen(!open)} to={el.path}>{el.nom}</NavLink></li>
-                    ))}
-                </ul>
-            </div>
 
             {/* Menu mobile */}
             {open && (
-                <div className="md:hidden bg-[#002E6D] border-t border-white border-opacity-10">
-                    <div className="px-4 py-4">
-                        <ul className="space-y-3">
+                <div className="md:hidden bg-[#002E6D] rounded-b-2xl border-t border-white border-opacity-10">
+                    <div className="px-4 py-4 ">
+                        <ul className="space-y-2 text-right">
                             {items.map((el, index) => (
                                 <li key={index}>
                                     <NavLink
