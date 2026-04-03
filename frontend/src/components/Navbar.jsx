@@ -31,8 +31,8 @@ export default function Navbar() {
                 <div className="flex justify-between items-center h-16">
 
                     {/* Logo */}
-                    <div className="text-xl font-bold">
-                        <NavLink to="/"><img className="h-15" src={logo} alt="logo" /></NavLink>
+                    <div className="shrink-0">
+                        <NavLink to="/"><img className="h-12 w-auto" src={logo} alt="IFTPL Logo" /></NavLink>
                     </div>
 
                     {/* Menu desktop */}
@@ -43,9 +43,8 @@ export default function Navbar() {
                     </ul>
 
                     {/* Burger */}
-                    <button onClick={() => setOpen(!open)} className="md:hidden" aria-label="menu">
-                        {open ? <X size={40} className="lg:hidden sm:hidden transition ease-in-out" color="white" strokeWidth={2.25} />
-                            : <Menu size={40} className="lg:hidden sm:hidden transition ease-in-out" color="white" strokeWidth={2.25} />}
+                    <button onClick={() => setOpen(!open)} className="md:hidden p-2" aria-label="Menu principal">
+                        {open ? <X size={24} color="white" /> : <Menu size={24} color="white" />}
                     </button>
                 </div>
             </div>
@@ -59,8 +58,28 @@ export default function Navbar() {
                     ))}
                 </ul>
             </div>
-        </nav>
-    );
+
+            {/* Menu mobile */}
+            {open && (
+                <div className="md:hidden bg-[#002E6D] border-t border-white border-opacity-10">
+                    <div className="px-4 py-4">
+                        <ul className="space-y-3">
+                            {items.map((el, index) => (
+                                <li key={index}>
+                                    <NavLink
+                                        to={el.path}
+                                        onClick={() => setOpen(false)}
+                                        className="block text-white hover:text-[#D00D2D] transition-colors py-2"
+                                    >
+                                        {el.nom}
+                                    </NavLink>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            )}
+        </nav>)
 }
 
 
