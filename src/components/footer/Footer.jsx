@@ -36,7 +36,7 @@ export default function Footer() {
                         to={`/formation-detail/${formation.id}`}
                         state={{ formation }}
                       >
-                        {formation.titre}
+                        {formation.titre.slice(0, 26)}
                       </Link>
                     </li>
                   );
