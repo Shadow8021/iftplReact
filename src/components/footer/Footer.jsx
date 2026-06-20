@@ -30,7 +30,7 @@ export default function Footer() {
                   return (
                     <li
                       key={formation.id}
-                      className="py-1 text-[#D00D2D] hover:text-white transition-colors max-w-100"
+                      className="py-1 text-[#D00D2D] hover:text-white text-md transition-colors "
                     >
                       <Link
                         to={`/formation-detail/${formation.id}`}
