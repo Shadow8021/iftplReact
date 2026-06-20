@@ -25,12 +25,12 @@ export default function Footer() {
               <p className="text-2xl font-bold text-[#D00D2D] mb-2">
                 Formations
               </p>
-              <ul className="text-[10px] flex flex-col gap-1 lg:text-[15px] lg:gap-0 ">
+              <ul className="text-[10px]  flex flex-col gap-1 lg:text-[15px] lg:gap-0 ">
                 {formations.map((formation) => {
                   return (
                     <li
                       key={formation.id}
-                      className="py-1 text-[#D00D2D] hover:text-white text-md transition-colors "
+                      className="py-1 text-[#D00D2D] truncate ... hover:text-white text-md transition-colors "
                     >
                       <Link
                         to={`/formation-detail/${formation.id}`}
