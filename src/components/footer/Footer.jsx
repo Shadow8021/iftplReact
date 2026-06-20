@@ -21,7 +21,7 @@ export default function Footer() {
         <div className="flex flex-col">
           <div className="w-full text-center flex flex-col gap-3 mb-5 items-center justify-evenly rounded-xl py-2 lg:flex-row">
             {/* Formations */}
-            <div className="lg:text-left min-w-full px-4 rounded-2xl min-h-80 border border-blue-600 font-bold text-sm py-1 lg:min-w-70">
+            <div className="lg:text-left min-w-full px-4 rounded-2xl min-h-50 border border-blue-600 font-bold text-sm py-1 lg:min-w-70">
               <p className="text-2xl font-bold text-[#D00D2D] mb-2">
                 Formations
               </p>
